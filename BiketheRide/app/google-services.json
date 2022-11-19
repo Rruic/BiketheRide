@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "142633515385",
+    "project_id": "biketheride-d83a4",
+    "storage_bucket": "biketheride-d83a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142633515385:android:4217ad75cb5f3bfb5ad7a8",
+        "android_client_info": {
+          "package_name": "com.example.biketheride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142633515385-tp6679ksp3qo4lu0d9pqa9us5r845cg2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.biketheride",
+            "certificate_hash": "d645d9595ce619300ef27f4527cb90e4a29f5706"
+          }
+        },
+        {
+          "client_id": "142633515385-45o65861tss5gght8pmf39ndsrlkfsi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxsJjmZgV0bW0z9eSUUf5-5m9ySHPbLnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142633515385-45o65861tss5gght8pmf39ndsrlkfsi2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

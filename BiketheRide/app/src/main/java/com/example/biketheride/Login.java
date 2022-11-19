@@ -5,16 +5,18 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.biketheride.databinding.ActivityLoginBinding;
 import com.example.biketheride.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private ActivityLoginBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view= binding.getRoot();
         setContentView(view);
     }

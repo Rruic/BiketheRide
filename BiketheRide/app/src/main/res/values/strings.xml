@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BiketheRide</string>
+    <string name="etEmail">email</string>
+    <string name="etPassword">password</string>
+    <string name="btIniciarSesion">Iniciar sesión</string>
+    <string name="btRegistrar">Registrarse</string>
+
+
 </resources>
