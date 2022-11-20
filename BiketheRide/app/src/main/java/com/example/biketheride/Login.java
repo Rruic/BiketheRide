@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.biketheride.databinding.ActivityLoginBinding;
-import com.example.biketheride.databinding.ActivityMainBinding;
 
 public class Login extends AppCompatActivity {
 
