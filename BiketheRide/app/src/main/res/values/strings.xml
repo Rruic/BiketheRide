@@ -4,6 +4,10 @@
     <string name="etPassword">password</string>
     <string name="btIniciarSesion">Iniciar sesión</string>
     <string name="btRegistrar">Registrarse</string>
+    <string name="btVolver">Volver</string>
+    <string name="etNombre">nombre</string>
+
+
 
 
 </resources>

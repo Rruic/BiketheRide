@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_login"
-    tools:context=".Login">
+    tools:context=".Registrar">
 
     <ImageView
         android:id="@+id/imageViewLogo"
@@ -43,7 +43,7 @@
         android:id="@+id/etPassword"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:alpha="0.5"
         android:background="@drawable/rounded_corners_ed"
         android:ems="10"
@@ -60,27 +60,32 @@
         app:layout_constraintTop_toBottomOf="@+id/etEmail"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <Button
-        android:id="@+id/btRegistro"
-        android:layout_width="230dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_corners_bt"
-        android:fontFamily="@font/krona_one"
-        android:text="@string/btIniciarSesion"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:alpha="0.5"
+        android:background="@drawable/rounded_corners_ed"
+        android:clickable="true"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="@string/etEmail"
+        android:inputType="textPersonName"
+        android:minHeight="45dp"
+        android:paddingLeft="15dp"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <Button
-        android:id="@+id/btVolver"
+        android:id="@+id/btRegistro"
         android:layout_width="230dp"
         android:layout_height="38dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_corners_bt"
         android:fontFamily="@font/krona_one"
         android:text="@string/btRegistrar"
@@ -90,15 +95,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btRegistro" />
+        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/signInButton"
-        android:layout_width="140dp"
+    <Button
+        android:id="@+id/btVolver"
+        android:layout_width="230dp"
         android:layout_height="38dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_corners_bt"
+        android:fontFamily="@font/krona_one"
+        android:text="@string/btVolver"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btVolver" />
+        app:layout_constraintTop_toBottomOf="@+id/btRegistro" />
 </androidx.constraintlayout.widget.ConstraintLayout>
