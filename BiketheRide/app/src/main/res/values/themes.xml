@@ -2,17 +2,27 @@
     <!-- Base application theme. -->
     <style name="Theme.BiketheRide" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/accentColor</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="RobotoFuente" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="KronaFuente" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/krona_one</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:shadowDy"></item>
     </style>
 
     <style name="Theme.BiketheRideLog" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/accentColor</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

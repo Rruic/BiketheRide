@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Toolbar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="fontFamily">@font/krona_one</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+</resources>
