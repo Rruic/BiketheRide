@@ -6,6 +6,8 @@
     <string name="btRegistrar">Registrarse</string>
     <string name="btVolver">Volver</string>
     <string name="etNombre">nombre</string>
+    <string name="prefs_file">com.example.biketheride.PREFERENCE_FILE_KEY</string>
+
 
 
 

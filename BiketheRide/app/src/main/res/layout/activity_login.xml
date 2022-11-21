@@ -67,6 +67,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_corners_bt"
         android:fontFamily="@font/krona_one"
+        android:onClick="login"
         android:text="@string/btIniciarSesion"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
@@ -83,6 +84,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners_bt"
         android:fontFamily="@font/krona_one"
+        android:onClick="registrar"
         android:text="@string/btRegistrar"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
@@ -93,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btRegistro" />
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/signInButton"
+        android:id="@+id/btSignInGoogle"
         android:layout_width="140dp"
         android:layout_height="38dp"
         android:layout_marginTop="20dp"
