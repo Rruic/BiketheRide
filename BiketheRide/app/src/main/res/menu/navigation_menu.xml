@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/bicisDisponibles"
+            android:icon="@drawable/ic_bike"
+            android:title="@string/bicisDisponibles" />
+        <item
+            android:id="@+id/mapa"
+            android:icon="@drawable/ic_map"
+            android:title="@string/mapa" />
+        <item
+            android:id="@+id/reservas"
+            android:icon="@drawable/ic_reservas"
+            android:title="@string/misReservas" />
+        <item
+            android:id="@+id/mensajes"
+            android:icon="@drawable/ic_mensaje"
+            android:title="@string/mensajes" />
+        <item
+            android:id="@+id/misBicis"
+            android:icon="@drawable/ic_bike"
+            android:title="@string/misBicis" />
+        <item
+            android:id="@+id/registrarBici"
+            android:icon="@drawable/ic_registrar_bici"
+            android:title="@string/registrarBici" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout" />
+
+
+    </group>
+</menu>

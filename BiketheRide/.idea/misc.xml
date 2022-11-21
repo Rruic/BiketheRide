@@ -8,6 +8,11 @@
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_bt.xml" value="0.1945" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_bicis_disponibles.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_reservas.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/header_navigation_drawer.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/toolbar.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/menu/navigation_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

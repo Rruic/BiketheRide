@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             });
 
         } else {
-            Toast.makeText(this, "No login", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Introduce email y contraseña", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -134,18 +134,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
     }
-/*
-    public void updateUI(FirebaseUser user) {
-        if (user != null) {
-            Toast.makeText(this, "Bienvenid@ " + user.getDisplayName()
-                    + "[" + user.getEmail() + "]", Toast.LENGTH_LONG).show();
-            //signInButton.setVisibility(View.GONE);
-            //signOutButton.setVisibility(View.VISIBLE);
-        } else {
-            //signInButton.setVisibility(View.VISIBLE);
-            // signOutButton.setVisibility(View.GONE);
-        }
-    }*/
 
     public void session() {
         SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
