@@ -2,30 +2,23 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="280dp"
+    android:layout_height="220dp"
     android:background="@drawable/fondo_login"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="40dp"
-        app:srcCompat="@drawable/logo_biketheride" />
-
     <TextView
         android:id="@+id/tvPerfil"
-        android:layout_width="343dp"
+        android:layout_width="226dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/roboto"
-        android:text="TextView"
-        android:textSize="20dp" />
+        android:text="Bienvenid@ Rubensdfsdfsdf"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="142dp"
@@ -38,6 +31,7 @@
         android:layout_height="40dp"
         android:layout_gravity="bottom|right"
         android:background="@drawable/ic_editar"
+        android:backgroundTint="@color/white"
         app:srcCompat="@drawable/ic_editar" />
 
 </FrameLayout>
