@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/myrect"
+    android:backgroundTintMode="src_in"
     android:minHeight="?attr/actionBarSize"
     android:theme="?attr/actionBarTheme"
     app:titleTextAppearance="@style/KronaFuente" />

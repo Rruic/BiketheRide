@@ -13,10 +13,12 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.databinding.ActivityMainBinding;
+import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
+import com.example.biketheride.ui.bike.Bike;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BicisDisponiblesFragment.OnListFragmentInteractionListener  {
 
     private ActivityMainBinding binding;
     @Override
@@ -124,4 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onListFragmentInteraction(Bike item) {
+
+    }
 }

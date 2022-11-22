@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -97,6 +98,15 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             }
 
 
+            @Override
+            public void onClick(View v) {
+
+
+
+
+                    Toast.makeText(v.getContext(), "Reserva realizada", Toast.LENGTH_LONG).show();
+                }
+            }
         }
-    }
+
 

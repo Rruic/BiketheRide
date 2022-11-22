@@ -14,8 +14,8 @@ public class Bike {
     private Bitmap imageBitmap;
     private String image;
     private String owner;
-    private String descripcion;
-    private String ciudad;
+    private String description;
+    private String city;
     private Double longitude;
     private Double latitude;
     private String location;
@@ -89,20 +89,20 @@ public class Bike {
         this.owner = owner;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getCity() {
+        return city;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     //constructor con los miembros
@@ -111,8 +111,8 @@ public class Bike {
                 String location, String email, Bitmap imageBitmap, String country) {
         this.image = image;
         this.owner = owner;
-        this.descripcion = description;
-        this.ciudad = city;
+        this.description = description;
+        this.city = city;
         this.longitude = longitude;
         this.latitude = latitude;
         this.location = location;
@@ -124,8 +124,8 @@ public class Bike {
     public Bike(String image, String owner, String description, String city, Double longitude, Double latitude, String location, String email, String country) {
         this.image = image;
         this.owner = owner;
-        this.descripcion = description;
-        this.ciudad = city;
+        this.description = description;
+        this.city = city;
         this.longitude = longitude;
         this.latitude = latitude;
         this.location = location;
