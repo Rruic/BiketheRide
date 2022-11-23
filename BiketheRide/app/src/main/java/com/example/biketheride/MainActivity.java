@@ -167,6 +167,12 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
 
     @Override
     public void onClick(View view) {
+
+        //getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ...()).addToBackStack(null).commit();
+        getSupportActionBar().setTitle("Editar perfil");
+        binding.drawerLayout.closeDrawers();
+
+
         System.out.println("editar");
     }
 }
