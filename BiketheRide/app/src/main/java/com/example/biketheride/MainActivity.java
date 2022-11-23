@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +18,18 @@ import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
 import com.example.biketheride.ui.bike.Bike;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements BicisDisponiblesFragment.OnListFragmentInteractionListener  {
+public class MainActivity extends AppCompatActivity implements BicisDisponiblesFragment.OnListFragmentInteractionListener, View.OnClickListener {
+
+    FirebaseAuth mauth;
+    private DatabaseReference mDatabase;
+
 
     private ActivityMainBinding binding;
     @Override
@@ -29,10 +40,31 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
         View view= binding.getRoot();
         setContentView(view);
 
+        mauth=FirebaseAuth.getInstance();
+
+
+        mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+
         Bundle bundle=getIntent().getExtras();
+        mDatabase.child("user").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Establece el nombre de usuario en la cabecera en tiempo real
+                TextView tvPerfil= (TextView) binding.navView.getHeaderView(0).findViewById(R.id.tvPerfil);
+                tvPerfil.setText(snapshot.child(mauth.getCurrentUser().getUid()).child("name").getValue().toString());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         setToolbar();
         setDefaultFragment();
+
+        binding.navView.getHeaderView(0).findViewById(R.id.btEditPerfil).setOnClickListener(MainActivity.this);
 
         binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -89,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
             }
         });
 
+
         SharedPreferences prefs=getSharedPreferences(getString(R.string.prefs_file),Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=prefs.edit();
         editor.putString("email",bundle.getString("email"));
@@ -130,5 +163,10 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
     @Override
     public void onListFragmentInteraction(Bike item) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        System.out.println("editar");
     }
 }

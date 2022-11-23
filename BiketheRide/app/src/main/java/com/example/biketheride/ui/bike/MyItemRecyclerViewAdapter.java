@@ -19,6 +19,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
         private List<Bike> dataSet;
 
+
         private final BicisDisponiblesFragment.OnListFragmentInteractionListener mListener;
 
         public MyItemRecyclerViewAdapter(List<Bike> items, BicisDisponiblesFragment.OnListFragmentInteractionListener listener) {
@@ -62,6 +63,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
             private final View mView;
             private final TextView textViewOwner;
             private final TextView textViewCity;
@@ -100,8 +102,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
             @Override
             public void onClick(View v) {
-
-
 
 
                     Toast.makeText(v.getContext(), "Reserva realizada", Toast.LENGTH_LONG).show();

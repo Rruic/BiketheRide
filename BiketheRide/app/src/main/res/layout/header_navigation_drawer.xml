@@ -15,9 +15,9 @@
         android:layout_marginBottom="5dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/roboto"
-        android:text="Bienvenid@ Rubensdfsdfsdf"
+        android:text="Bienvenid@"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -26,7 +26,7 @@
         app:barrierDirection="bottom" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btEditPerfil"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="bottom|right"

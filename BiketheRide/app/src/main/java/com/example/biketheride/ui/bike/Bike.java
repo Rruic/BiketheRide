@@ -10,7 +10,6 @@ import java.util.Map;
 
 public class Bike {
 
-    //atributos miembros
     private Bitmap imageBitmap;
     private String image;
     private String owner;
@@ -21,9 +20,7 @@ public class Bike {
     private String location;
     private String email;
     private String country;
-
-    //setters y getters
-
+    private String bId;
 
     public String getCountry() {
         return country;
@@ -85,27 +82,20 @@ public class Bike {
         return owner;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
+    public void setOwner(String owner) { this.owner = owner; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 
-    public String getCity() {
-        return city;
-    }
+    public String getCity() { return city; }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+    public void setCity(String city) { this.city = city; }
 
-    //constructor con los miembros
+    public String getbId() { return bId; }
+
+    public void setbId(String bId) { this.bId = bId; }
+
     public Bike(String image, String owner, String description,
                 String city, Double longitude, Double latitude,
                 String location, String email, Bitmap imageBitmap, String country) {
@@ -133,7 +123,6 @@ public class Bike {
         this.country = country;
     }
 
-    //constructor por defecto
     public Bike() {
     }
 

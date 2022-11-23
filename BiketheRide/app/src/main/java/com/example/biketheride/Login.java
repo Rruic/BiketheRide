@@ -107,6 +107,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
 
+
             } catch (ApiException e) {
 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
@@ -124,6 +125,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
 // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            User user=new User(mAuth.getCurrentUser().getDisplayName(),mAuth.getCurrentUser().getEmail(),mAuth.getCurrentUser().getUid());
+                            user.addToDatabase(mAuth.getCurrentUser().getUid());
                             irMain(task.getResult().getUser().getEmail());
 
                         } else {
