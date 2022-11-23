@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        //mGoogleSignInClient.signOut();
+        mGoogleSignInClient.signOut();
 
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);

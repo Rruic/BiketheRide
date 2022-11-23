@@ -84,7 +84,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
                 imageViewIcon = view.findViewById(R.id.imageViewIcon);
                 textViewLocation = view.findViewById(R.id.textViewLocation);
                 textViewDescription = view.findViewById(R.id.textViewDescription);
-                imageButtonEmail = view.findViewById(R.id.imageButtonEmail);
+                imageButtonEmail = view.findViewById(R.id.imageButtonEmailCard);
                 context = view.getContext();
 
             }
