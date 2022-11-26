@@ -95,7 +95,7 @@ public class BicisDisponiblesFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
-        recyclerView = view.findViewById(R.id.list);
+        recyclerView = view.findViewById(R.id.listBike);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView

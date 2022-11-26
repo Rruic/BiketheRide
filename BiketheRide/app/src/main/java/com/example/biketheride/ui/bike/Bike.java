@@ -20,7 +20,7 @@ public class Bike {
     private String location;
     private String email;
     private String country;
-    private String bId;
+    private String id;
 
     public String getCountry() {
         return country;
@@ -92,9 +92,9 @@ public class Bike {
 
     public void setCity(String city) { this.city = city; }
 
-    public String getbId() { return bId; }
+    public String getId() { return id; }
 
-    public void setbId(String bId) { this.bId = bId; }
+    public void setId(String id) { this.id = id; }
 
     public Bike(String image, String owner, String description,
                 String city, Double longitude, Double latitude,
@@ -111,6 +111,14 @@ public class Bike {
         this.country = country;
     }
 
+    public Bike (String city, String location, String image, String id){
+        this.city=city;
+        this.location = location;
+        this.image = image;
+        this.id=id;
+
+
+    }
     public Bike(String image, String owner, String description, String city, Double longitude, Double latitude, String location, String email, String country) {
         this.image = image;
         this.owner = owner;

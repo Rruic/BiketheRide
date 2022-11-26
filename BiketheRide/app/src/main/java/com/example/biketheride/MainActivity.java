@@ -14,11 +14,11 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.databinding.ActivityMainBinding;
+import com.example.biketheride.mybikes.MisBicisFragment;
 import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
 import com.example.biketheride.ui.bike.Bike;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements BicisDisponiblesFragment.OnListFragmentInteractionListener, View.OnClickListener {
 
-    FirebaseAuth mauth;
+    private FirebaseAuth mauth;
     private DatabaseReference mDatabase;
 
 

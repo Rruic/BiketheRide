@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_delete.xml" value="0.1" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_person.xml" value="0.1" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/corners.xml" value="0.1905" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
@@ -14,6 +15,9 @@
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_bicis_disponibles.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item.xml" value="0.33" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list_mybikes.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_mybikes.xml" value="0.25" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_mis_bicis.xml" value="0.18" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_reservas.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/header_navigation_drawer.xml" value="0.25" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/toolbar.xml" value="0.20416666666666666" />
