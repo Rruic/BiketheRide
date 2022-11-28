@@ -78,10 +78,10 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
                         fragment = new BicisDisponiblesFragment();
                         fragmentTransaction = true;
                         break;
-                   /* case R.id.mapa:
-                        fragment = new ();
+                    case R.id.mapa:
+                        fragment = new MapsFragment();
                         fragmentTransaction = true;
-                        break;*/
+                        break;
                     case R.id.reservas:
                         fragment = new ReservasFragment();
                         fragmentTransaction = true;

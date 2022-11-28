@@ -9,9 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biketheride.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -19,8 +25,11 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
         private List<Bike> dataSet;
 
+    private DatabaseReference mDatabase;
 
-        private final BicisDisponiblesFragment.OnListFragmentInteractionListener mListener;
+
+
+    private final BicisDisponiblesFragment.OnListFragmentInteractionListener mListener;
 
         public MyItemRecyclerViewAdapter(List<Bike> items, BicisDisponiblesFragment.OnListFragmentInteractionListener listener) {
             mListener = listener;
@@ -31,6 +40,8 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.fragment_item, parent, false);
+            mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+
             return new ViewHolder(view);
         }
 
@@ -38,8 +49,22 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = dataSet.get(position);
             holder.setOnClickListeners();
+            System.out.println("User:"+dataSet.get(position).getIdUser());
+            mDatabase.child("user").child(dataSet.get(position).getIdUser()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    holder.textViewOwner.setText(snapshot.child("name").getValue().toString());
 
-            holder.textViewOwner.setText(dataSet.get(position).getOwner());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            //holder.textViewOwner.setText(dataSet.get(position).getOwner());
+
             holder.textViewCity.setText(dataSet.get(position).getCity());
             holder.textViewLocation.setText(dataSet.get(position).getLocation());
             holder.textViewDescription.setText(dataSet.get(position).getDescription());

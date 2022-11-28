@@ -124,6 +124,11 @@ public class BicisDisponiblesFragment extends Fragment {
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
                     Bike bike = productSnapshot.getValue(Bike.class);
                     bicis.add(bike);
+                    System.out.println("Desccp "+bike.getDescription());
+                    System.out.println("Desccp "+bike.getId());
+                    System.out.println("Desccp "+bike.getIdUser());
+
+
                     downloadPhoto(bike);
                 }
                 mAdapter.notifyDataSetChanged();

@@ -150,7 +150,6 @@ public class MisBicisFragment extends Fragment {
                         String idBike=productSnapshot.child("id").getValue().toString();
 
                         Bike bike = new Bike(city, location, image,idBike);
-                        System.out.println(idBike);
                         bicis.add(bike);
                         downloadPhoto(bike);
 
@@ -159,7 +158,6 @@ public class MisBicisFragment extends Fragment {
                 if (mAdapter.getItemCount() == 0) {
                     tv.setVisibility(View.VISIBLE);
 
-                    System.out.println();
                 }else{
                     tv.setVisibility(View.INVISIBLE);
                 }

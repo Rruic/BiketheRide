@@ -1,6 +1,7 @@
 package com.example.biketheride.mybikes;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -52,8 +54,6 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
         holder.textViewCity.setText(dataSet.get(position).getCity());
         holder.textViewLocation.setText(dataSet.get(position).getLocation());
         holder.imageViewIcon.setImageBitmap(dataSet.get(position).getImageBitmap());
-        String p=dataSet.get(position).getId();
-        System.out.println("WWWWWWW "+p);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +62,7 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
-                    System.out.println("EEEEEEEE "+holder.mItem.getId());
+                    System.out.println("CardView "+holder.mItem.getId());
                 }
             }
         });
@@ -94,7 +94,6 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
             imageButtonEliminar = view.findViewById(R.id.imageButtonEliminarBici);
             context = view.getContext();
 
-
         }
 
         void setOnClickListeners() {
@@ -111,20 +110,36 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
         @Override
         public void onClick(View v) {
             System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+            System.out.println(mItem.getIdUser());
             DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
-            mDatabase.child("bikes_list").child(mItem.getId()).addValueEventListener(new ValueEventListener() {
+
+            AlertDialog.Builder aDial= new AlertDialog.Builder(v.getContext());
+            aDial.setTitle("Eliminar");
+            aDial.setMessage("¿Deseas eliminar la bicicleta?");
+            aDial.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    snapshot.getRef().removeValue();
-
-                }
-
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    mDatabase.child("bikes_list").child(mItem.getId()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                             snapshot.getRef().removeValue();
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });                }
+            });
+            aDial.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    System.out.println("No");
                 }
             });
+            aDial.create().show();
+
+
             Toast.makeText(v.getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_LONG).show();
         }
     }

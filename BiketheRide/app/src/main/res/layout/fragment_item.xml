@@ -30,8 +30,9 @@
             <ImageView
                 android:id="@+id/imageViewIcon"
                 android:layout_width="170dp"
-                android:layout_height="135dp"
+                android:layout_height="130dp"
                 android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"
                 android:tag="image_tag"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent" />

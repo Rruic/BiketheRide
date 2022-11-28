@@ -9,6 +9,9 @@
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/myrect.xml" value="0.1" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_bt.xml" value="0.1945" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_btEnable.xml" value="0.1025" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_bt_enable.xml" value="0.1025" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_ed.xml" value="0.1025" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_registrar.xml" value="0.20416666666666666" />
@@ -17,7 +20,9 @@
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list_mybikes.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_mybikes.xml" value="0.25" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_maps.xml" value="0.19010416666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_mis_bicis.xml" value="0.18" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_registrar_bici.xml" value="0.25" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_reservas.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/header_navigation_drawer.xml" value="0.25" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/toolbar.xml" value="0.20416666666666666" />

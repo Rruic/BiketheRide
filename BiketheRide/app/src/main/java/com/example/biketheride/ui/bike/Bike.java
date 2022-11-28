@@ -21,6 +21,7 @@ public class Bike {
     private String email;
     private String country;
     private String id;
+    private String idUser;
 
     public String getCountry() {
         return country;
@@ -96,6 +97,10 @@ public class Bike {
 
     public void setId(String id) { this.id = id; }
 
+    public String getIdUser() { return idUser; }
+
+    public void setIdUser(String idUser) { this.idUser = idUser; }
+
     public Bike(String image, String owner, String description,
                 String city, Double longitude, Double latitude,
                 String location, String email, Bitmap imageBitmap, String country) {
@@ -116,28 +121,28 @@ public class Bike {
         this.location = location;
         this.image = image;
         this.id=id;
-
-
     }
-    public Bike(String image, String owner, String description, String city, Double longitude, Double latitude, String location, String email, String country) {
+
+    public Bike(String image, String description, String city, Double longitude, Double latitude, String location, String country, String id, String idUser) {
         this.image = image;
-        this.owner = owner;
         this.description = description;
         this.city = city;
         this.longitude = longitude;
         this.latitude = latitude;
         this.location = location;
-        this.email = email;
         this.country = country;
+        this.id = id;
+        this.idUser = idUser;
     }
 
     public Bike() {
     }
 
     //añade bici a la base de datos
-    public void addToDatabase() {
+    public void addToDatabase(String key) {
         DatabaseReference database = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
-        String key = database.child("bikes_list").push().getKey();
+       // String key = database.child("bikes_list").push().getKey();
+        //System.out.println("En bike: "+database.child("bikes_list").push().getKey());
         Map<String, Object> childUpdates = new HashMap<>();
         database.child("bikes_list/" + key).setValue(this);
     }
