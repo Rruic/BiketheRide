@@ -59,7 +59,7 @@ public class MisBicisFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
     private DatabaseReference mDatabase;
-    public static List<Bike> bicis = new ArrayList<Bike>();
+    public static List<Bike> misBicis = new ArrayList<Bike>();
     private StorageReference mStorageReference;
 
     private FirebaseAuth mauth;
@@ -119,7 +119,7 @@ public class MisBicisFragment extends Fragment {
 
         misbicisFirebase();
 
-        mAdapter = new MyBikesRecyclerViewAdapter(bicis, mListener);
+        mAdapter = new MyBikesRecyclerViewAdapter(misBicis, mListener);
 
         recyclerView.setAdapter(mAdapter);
 
@@ -132,12 +132,12 @@ public class MisBicisFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                bicis.clear();
+                misBicis.clear();
                 TextView tv = view.findViewById(R.id.textView3);
 
 
                 if (snapshot.exists()) {
-                    bicis.clear();
+                    misBicis.clear();
 
                     for (DataSnapshot productSnapshot : snapshot.getChildren()) {
                         /*Bike bike = productSnapshot.getValue(Bike.class);
@@ -150,7 +150,7 @@ public class MisBicisFragment extends Fragment {
                         String idBike=productSnapshot.child("id").getValue().toString();
 
                         Bike bike = new Bike(city, location, image,idBike);
-                        bicis.add(bike);
+                        misBicis.add(bike);
                         downloadPhoto(bike);
 
                     }
@@ -188,7 +188,7 @@ public class MisBicisFragment extends Fragment {
                     String url = "gs://" + taskSnapshot.getStorage().getBucket() + "/" + taskSnapshot.getStorage().getName();
                     ;
                     Log.d(TAG, "Loaded " + url);
-                    for (Bike c : bicis) {
+                    for (Bike c : misBicis) {
                         if (c.getImage().equals(url)) {
                             c.setImageBitmap(BitmapFactory.decodeFile(localFile.getAbsolutePath()));
                             mAdapter.notifyDataSetChanged();
