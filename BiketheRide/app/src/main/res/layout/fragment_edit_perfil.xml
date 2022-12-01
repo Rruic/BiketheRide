@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".EditPerfilFragment">
+
+    <ImageView
+        android:id="@+id/imageViewName"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/ic_person"
+        android:tint="@color/azul"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewEmail"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTintMode="multiply"
+        android:src="@drawable/ic_email"
+        android:tint="@color/azul"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewName" />
+
+    <ImageView
+        android:id="@+id/imageViewPass"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/ic_key"
+        android:tint="@color/azul"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewEmail" />
+
+    <EditText
+        android:id="@+id/etEditName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="82dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/imageViewName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etEditEmail"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEmail"
+        app:layout_constraintTop_toBottomOf="@+id/etEditName" />
+
+    <EditText
+        android:id="@+id/etEditPass"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="@string/passEdit"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toEndOf="@+id/imageViewPass"
+        app:layout_constraintTop_toBottomOf="@+id/etEditEmail" />
+
+    <ImageButton
+        android:id="@+id/ibtSaveName"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="76dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_save"
+        android:tint="@color/azul"
+        app:layout_constraintStart_toEndOf="@+id/etEditName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibtSavePass"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_save"
+        android:tint="@color/azul"
+        app:layout_constraintStart_toEndOf="@+id/etEditPass"
+        app:layout_constraintTop_toBottomOf="@+id/ibtSaveEmail" />
+
+    <ImageButton
+        android:id="@+id/ibtSaveEmail"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_save"
+        android:tint="@color/azul"
+        app:layout_constraintStart_toEndOf="@+id/etEditEmail"
+        app:layout_constraintTop_toBottomOf="@+id/ibtSaveName" />
+
+    <Button
+        android:id="@+id/btVolverPerfil"
+        style="corner"
+        android:layout_width="240dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="240dp"
+        android:background="@drawable/rounded_corners_bt"
+        android:fontFamily="@font/roboto"
+        android:text="@string/btVolver"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEditPass" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

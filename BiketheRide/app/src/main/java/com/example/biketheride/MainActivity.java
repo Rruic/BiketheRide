@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.databinding.ActivityMainBinding;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
 
     private FirebaseAuth mauth;
     private DatabaseReference mDatabase;
+    String title;
 
 
     private ActivityMainBinding binding;
@@ -109,10 +111,15 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
                         break;
                 }
 
+
+               // System.out.println("Fragm "+(getSupportFragmentManager().findFragmentById(R.id.content_frame).getTag()==fragment.getTag()));
                 if (fragmentTransaction) {
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).addToBackStack(null).commit();
-                    item.setChecked(true);
+                    //if (fragment==getSupportFragmentManager().findFragmentById(R.id.content_frame)){}
+
+                    String tag=item.getTitle().toString();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,tag).addToBackStack(null).commit();
+                    //item.setChecked(true);
                     getSupportActionBar().setTitle(item.getTitle());
                     binding.drawerLayout.closeDrawers();
                 }
@@ -132,10 +139,11 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
 
     //Carga fragment por defecto
     private void setDefaultFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new BicisDisponiblesFragment()).commit();
-
         MenuItem item = binding.navView.getMenu().getItem(0);
-        item.setChecked(true);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new BicisDisponiblesFragment(),item.getTitle().toString()).commit();
+
+        //item.setChecked(true);
         getSupportActionBar().setTitle(item.getTitle());
     }
 
@@ -168,11 +176,36 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
     @Override
     public void onClick(View view) {
 
-        //getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ...()).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
+        getSupportActionBar().hide();
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new EditPerfilFragment()).addToBackStack(null).commit();
         getSupportActionBar().setTitle("Editar perfil");
         binding.drawerLayout.closeDrawers();
+    }
+    public void showDrawer(){
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        getSupportActionBar().show();
+
+    }
+
+    public FirebaseAuth getMauth() {
+        return mauth;
+    }
+
+    public DatabaseReference getmDatabase() {
+        return mDatabase;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.content_frame);
 
 
-        System.out.println("editar");
+        getSupportActionBar().setTitle(f.getTag());
+
+
     }
 }

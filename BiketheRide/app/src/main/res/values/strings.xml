@@ -21,7 +21,9 @@
     <string name="bt_registrar_bici">Registrar</string>
     <string name="tvCargandoFotoBici">Cargando...</string>
     <string name="tvCargaCompletaFotoBici">Completado</string>
-
+    <string name="btActualizar">Actualizar</string>
+    <string name="passEdit">******</string>
+    <string name="tvReservar">Reservar</string>
 
 
 </resources>

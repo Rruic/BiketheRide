@@ -113,6 +113,7 @@ public class BicisDisponiblesFragment extends Fragment {
 
         recyclerView.setAdapter(mAdapter);
 
+
         return view;
     }
 

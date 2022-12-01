@@ -27,11 +27,12 @@
 
     <ImageButton
         android:id="@+id/btEditPerfil"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|right"
-        android:background="@drawable/ic_editar"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:tint="@color/white"
         app:srcCompat="@drawable/ic_editar" />
 
 </FrameLayout>
