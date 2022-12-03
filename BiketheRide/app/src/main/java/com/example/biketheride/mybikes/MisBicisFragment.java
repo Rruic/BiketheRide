@@ -133,7 +133,7 @@ public class MisBicisFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 misBicis.clear();
-                TextView tv = view.findViewById(R.id.textView3);
+                TextView tvNoBici = view.findViewById(R.id.tvNoBici);
 
 
                 if (snapshot.exists()) {
@@ -156,10 +156,10 @@ public class MisBicisFragment extends Fragment {
                     }
                 }
                 if (mAdapter.getItemCount() == 0) {
-                    tv.setVisibility(View.VISIBLE);
+                    tvNoBici.setVisibility(View.VISIBLE);
 
                 }else{
-                    tv.setVisibility(View.INVISIBLE);
+                    tvNoBici.setVisibility(View.INVISIBLE);
                 }
                 mAdapter.notifyDataSetChanged();
 

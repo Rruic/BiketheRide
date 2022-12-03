@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,15 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
     private FirebaseAuth mauth;
     private DatabaseReference mDatabase;
     String title;
+    private static String fecha;
 
+    public static String getFecha() {
+        return fecha;
+    }
+
+    public static void setFecha(String fecha) {
+        MainActivity.fecha = fecha;
+    }
 
     private ActivityMainBinding binding;
     @Override
@@ -81,8 +90,12 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
                         fragmentTransaction = true;
                         break;
                     case R.id.mapa:
+                        if (getFecha()==null){
+                            Toast.makeText(MainActivity.this, "Para ver el mapa debes seleccionar una fecha", Toast.LENGTH_SHORT).show();
+                        }else{
                         fragment = new MapsFragment();
                         fragmentTransaction = true;
+                        }
                         break;
                     case R.id.reservas:
                         fragment = new ReservasFragment();

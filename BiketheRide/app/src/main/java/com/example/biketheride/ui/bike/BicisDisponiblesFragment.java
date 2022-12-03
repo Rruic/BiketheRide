@@ -2,6 +2,7 @@ package com.example.biketheride.ui.bike;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,7 +16,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 
+import com.example.biketheride.DatePickerFragment;
+import com.example.biketheride.MainActivity;
 import com.example.biketheride.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +63,7 @@ public class BicisDisponiblesFragment extends Fragment {
     private DatabaseReference mDatabase;
     public static List<Bike> bicis =new ArrayList<Bike>();
     private StorageReference mStorageReference;
+    Button btFecha;
 
     public BicisDisponiblesFragment() {
         // Required empty public constructor
@@ -90,6 +96,8 @@ public class BicisDisponiblesFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,14 +115,44 @@ public class BicisDisponiblesFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
-        bicisFirebase();
+        //bicisFirebase();
 
         mAdapter = new MyItemRecyclerViewAdapter(bicis, mListener);
 
         recyclerView.setAdapter(mAdapter);
 
+        btFecha=view.findViewById(R.id.btFecha);
+        if (MainActivity.getFecha()!=null){
+
+            btFecha.setText(MainActivity.getFecha());
+
+        }
+        btFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Fecha");
+                showDatePickerDialog();
+            }
+        });
+
 
         return view;
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 porque enero es cero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                btFecha.setText(selectedDate);
+                MainActivity.setFecha(selectedDate);
+                bicisFirebase();
+
+            }
+        });
+
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
     private void bicisFirebase() {
@@ -125,9 +163,6 @@ public class BicisDisponiblesFragment extends Fragment {
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
                     Bike bike = productSnapshot.getValue(Bike.class);
                     bicis.add(bike);
-                    System.out.println("Desccp "+bike.getDescription());
-                    System.out.println("Desccp "+bike.getId());
-                    System.out.println("Desccp "+bike.getIdUser());
 
 
                     downloadPhoto(bike);

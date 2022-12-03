@@ -24,6 +24,6 @@
     <string name="btActualizar">Actualizar</string>
     <string name="passEdit">******</string>
     <string name="tvReservar">Reservar</string>
-
+    <string name="SelecFecha">Seleccionar fecha</string>
 
 </resources>
