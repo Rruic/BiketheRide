@@ -3,30 +3,37 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/bicisDisponibles"
+            android:checkable="false"
             android:icon="@drawable/ic_bike"
             android:title="@string/bicisDisponibles" />
         <item
             android:id="@+id/mapa"
+            android:checkable="false"
             android:icon="@drawable/ic_map"
             android:title="@string/mapa" />
         <item
             android:id="@+id/reservas"
+            android:checkable="false"
             android:icon="@drawable/ic_reservas"
             android:title="@string/misReservas" />
         <item
             android:id="@+id/mensajes"
+            android:checkable="false"
             android:icon="@drawable/ic_mensaje"
             android:title="@string/mensajes" />
         <item
             android:id="@+id/misBicis"
+            android:checkable="false"
             android:icon="@drawable/ic_bike"
             android:title="@string/misBicis" />
         <item
             android:id="@+id/registrarBici"
+            android:checkable="false"
             android:icon="@drawable/ic_registrar_bici"
             android:title="@string/registrarBici" />
         <item
             android:id="@+id/logout"
+            android:checkable="false"
             android:icon="@drawable/ic_logout"
             android:title="@string/logout" />
 

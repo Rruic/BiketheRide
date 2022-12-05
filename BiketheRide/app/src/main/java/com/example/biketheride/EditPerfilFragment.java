@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.databinding.FragmentEditPerfilBinding;
+import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -91,6 +92,7 @@ public class EditPerfilFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.btVolverPerfil:
                 getActivity().onBackPressed();
+                new BicisDisponiblesFragment();
 
         }
     }

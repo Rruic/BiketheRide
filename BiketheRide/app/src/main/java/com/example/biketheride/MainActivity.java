@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.databinding.ActivityMainBinding;
 import com.example.biketheride.mybikes.MisBicisFragment;
+import com.example.biketheride.reserva.ReservasFragment;
 import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
 import com.example.biketheride.ui.bike.Bike;
 import com.google.android.material.navigation.NavigationView;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
     public static void setFecha(String fecha) {
         MainActivity.fecha = fecha;
     }
+
 
     private ActivityMainBinding binding;
     @Override

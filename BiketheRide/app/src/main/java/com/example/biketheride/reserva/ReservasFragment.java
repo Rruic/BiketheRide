@@ -1,22 +1,25 @@
-package com.example.biketheride.mybikes;
+package com.example.biketheride.reserva;
 
 import static android.content.ContentValues.TAG;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.biketheride.R;
+import com.example.biketheride.mybikes.MisBicisFragment;
+import com.example.biketheride.mybikes.MyBikesRecyclerViewAdapter;
 import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
 import com.example.biketheride.ui.bike.Bike;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,49 +42,34 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MisBicisFragment#newInstance} factory method to
+ * Use the {@link ReservasFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MisBicisFragment extends Fragment {
+public class ReservasFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private BicisDisponiblesFragment.OnListFragmentInteractionListener mListener;
     private View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
     private DatabaseReference mDatabase;
-    public static List<Bike> misBicis = new ArrayList<Bike>();
+    private DatabaseReference mDat;
+
+    public static List<Reserva> misReservas = new ArrayList<Reserva>();
+    public static List<Bike> bikesReserva = new ArrayList<Bike>();
+
     private StorageReference mStorageReference;
 
     private FirebaseAuth mauth;
 
-    public MisBicisFragment() {
+    public ReservasFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MisBicisFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MisBicisFragment newInstance(String param1, String param2) {
-        MisBicisFragment fragment = new MisBicisFragment();
+
+    public static ReservasFragment newInstance(String param1, String param2) {
+        ReservasFragment fragment = new ReservasFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -90,17 +78,16 @@ public class MisBicisFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_item_list_mybikes, container, false);
+        view = inflater.inflate(R.layout.fragment_item_list_myreservas, container, false);
 
-        recyclerView = view.findViewById(R.id.listMyBike);
+        recyclerView = view.findViewById(R.id.listMyReservas);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -115,51 +102,54 @@ public class MisBicisFragment extends Fragment {
 
 
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+        mDat = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
 
-        misbicisFirebase();
+        misreservasFirebase();
 
-        mAdapter = new MyBikesRecyclerViewAdapter(misBicis, mListener);
+        mAdapter = new MyReservasRecyclerViewAdapter(misReservas);
 
         recyclerView.setAdapter(mAdapter);
 
         return view;
     }
 
-    private void misbicisFirebase() {
+    private void misreservasFirebase() {
 
-        mDatabase.child("bikes_list").orderByChild("idUser").equalTo(mauth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        System.out.println("Reservas: "+mDatabase.child("reservas").orderByChild("idUser").equalTo(mauth.getCurrentUser().getUid()));
+        mDatabase.child("reservas").orderByChild("idUser").equalTo(mauth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                misBicis.clear();
-                TextView tvNoBici = view.findViewById(R.id.tvNoMyBici);
+                misReservas.clear();
+                bikesReserva.clear();
+                TextView tvNoReservas = view.findViewById(R.id.tvNoReserva);
 
 
                 if (snapshot.exists()) {
-                    misBicis.clear();
+                    misReservas.clear();
+                    bikesReserva.clear();
+
 
                     for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                        /*Bike bike = productSnapshot.getValue(Bike.class);
-                        bicis.add(bike);
-                        downloadPhoto(bike);*/
-                        String city = productSnapshot.child("city").getValue().toString();
-                        String location = productSnapshot.child("location").getValue().toString();
-                        String image = productSnapshot.child("image").getValue().toString();
 
-                        String idBike=productSnapshot.child("id").getValue().toString();
+                        String fecha = productSnapshot.child("fecha").getValue().toString();
+                        String id = productSnapshot.child("id").getValue().toString();
+                        String idUser = productSnapshot.child("idUser").getValue().toString();
+                        String idBike=productSnapshot.child("idBike").getValue().toString();
+                        String city=productSnapshot.child("city").getValue().toString();
+                        String location=productSnapshot.child("location").getValue().toString();
 
-                        Bike bike = new Bike(city, location, image,idBike);
-                        misBicis.add(bike);
-                        downloadPhoto(bike);
-
+                        Reserva reserva = new Reserva(id,idUser,idBike,fecha,city,location);
+                        misReservas.add(reserva);
+                        //downloadPhoto(bike);
                     }
                 }
                 if (mAdapter.getItemCount() == 0) {
-                    tvNoBici.setVisibility(View.VISIBLE);
+                    tvNoReservas.setVisibility(View.VISIBLE);
 
                 }else{
-                    tvNoBici.setVisibility(View.INVISIBLE);
+                    tvNoReservas.setVisibility(View.INVISIBLE);
                 }
                 mAdapter.notifyDataSetChanged();
 
@@ -171,7 +161,7 @@ public class MisBicisFragment extends Fragment {
             }
         });
     }
-
+/*
     private void downloadPhoto(Bike c) {
 
         mStorageReference = FirebaseStorage.getInstance().getReferenceFromUrl(c.getImage());
@@ -202,25 +192,10 @@ public class MisBicisFragment extends Fragment {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof BicisDisponiblesFragment.OnListFragmentInteractionListener) {
-            mListener = (BicisDisponiblesFragment.OnListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name

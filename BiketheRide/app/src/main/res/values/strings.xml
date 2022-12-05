@@ -16,7 +16,7 @@
     <string name="registrarBici">Registrar bicicleta</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bicis_vacio_fragment">No tienes bicicletas para alquilar</string>
+    <string name="my_bicis_vacio_fragment">No tienes bicicletas para alquilar</string>
     <string name="descrip_registrar_bici">Descripción</string>
     <string name="bt_registrar_bici">Registrar</string>
     <string name="tvCargandoFotoBici">Cargando...</string>
@@ -25,5 +25,12 @@
     <string name="passEdit">******</string>
     <string name="tvReservar">Reservar</string>
     <string name="SelecFecha">Seleccionar fecha</string>
+    <string name="reservas_vacio_fragment">No tienes ninguna reserva</string>
+    <string name="eliminar_bicicleta">Eliminar bicicleta</string>
+    <string name="eliminar_reserva">Eliminar reserva</string>
+    <string name="bicis_vacio_fragment">No hay bicicletas disponibles para la fecha seleccionada</string>
+
+
+
 
 </resources>

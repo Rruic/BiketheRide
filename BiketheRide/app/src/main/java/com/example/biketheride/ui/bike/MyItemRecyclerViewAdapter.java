@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,8 +12,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.biketheride.MainActivity;
 import com.example.biketheride.R;
-import com.example.biketheride.Reserva;
+import com.example.biketheride.reserva.Reserva;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,13 +25,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
     private List<Bike> dataSet;
 
     private DatabaseReference mDatabase;
+    //Context context;
 
 
 
@@ -45,6 +51,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
                 .inflate(R.layout.fragment_item, parent, false);
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
+        //context= context.getApplicationContext();
         return new ViewHolder(view);
     }
 
@@ -73,24 +80,29 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.textViewDescription.setText(dataSet.get(position).getDescription());
         holder.imageViewIcon.setImageBitmap(dataSet.get(position).getImageBitmap());
 
-        holder.imageButtonEmail.setOnClickListener(new View.OnClickListener() {
+        /*holder.imageButtonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String idUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                /*String idUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 String id=mDatabase.child("reserva").push().getKey();
 
                 System.out.println(dataSet.get(position).getIdUser());
                 String idBike=dataSet.get(position).getId();
+                String city=dataSet.get(position).getCity();
+                String location=dataSet.get(position).getLocation();
 
-                Reserva reserva = new Reserva(id,idUser,idBike,"");
 
-                reserva.addToDatabase(id);
+                Reserva reserva = new Reserva(id,idUser,idBike, MainActivity.getFecha(),city,location);
 
-                Toast.makeText(view.getContext(), "Reserva realizada", Toast.LENGTH_LONG).show();
+                //reserva.addToDatabase(id);
+
+                addToDatabase(reserva,id,view);
+
 
             }
-        });
+
+        });*/
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +113,29 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
                     // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
                 }
+            }
+        });
+    }
+
+    public void addToDatabase(Reserva reserva, String id,Context context){
+        DatabaseReference database= FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+        String key= database.child("reservas").push().getKey();
+        Map<String, Object> childUpdates = new HashMap<>();
+        database.child("reservas/"+id).setValue(reserva).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                System.out.println("En reserva OK");
+                Toast.makeText(context, "Reserva realizada", Toast.LENGTH_LONG).show();
+
+
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+
+
+
             }
         });
     }
@@ -150,6 +185,22 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
         @Override
         public void onClick(View v) {
+
+            String idUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            String id=mDatabase.child("reserva").push().getKey();
+
+            //System.out.println(dataSet.get(position).getIdUser());
+            String idBike=mItem.getId();
+            String city=mItem.getCity();
+            String location=mItem.getLocation();
+
+
+            Reserva reserva = new Reserva(id,idUser,idBike, MainActivity.getFecha(),city,location);
+
+            //reserva.addToDatabase(id);
+
+            addToDatabase(reserva,id,context);
 
 
             Toast.makeText(v.getContext(), "Reserva realizada", Toast.LENGTH_LONG).show();

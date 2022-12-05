@@ -1,7 +1,8 @@
-package com.example.biketheride.mybikes;
+package com.example.biketheride.reserva;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.biketheride.R;
-import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
 import com.example.biketheride.ui.bike.Bike;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,45 +26,55 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecyclerViewAdapter.ViewHolder> {
+public class MyReservasRecyclerViewAdapter extends RecyclerView.Adapter<MyReservasRecyclerViewAdapter.ViewHolder> {
 
-    private List<Bike> dataSet;
+    private List<Reserva> dataSet;
+    private DatabaseReference mDatabase;
 
 
-    private final BicisDisponiblesFragment.OnListFragmentInteractionListener mListener;
 
-    public MyBikesRecyclerViewAdapter(List<Bike> items, BicisDisponiblesFragment.OnListFragmentInteractionListener listener) {
-        mListener = listener;
+    //private final BicisDisponiblesFragment.OnListFragmentInteractionListener mListener;
+
+    public MyReservasRecyclerViewAdapter(List<Reserva> items) {
+        //mListener = listener;
         this.dataSet = items;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public MyBikesRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyReservasRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item_mybikes, parent, false);
+                .inflate(R.layout.fragment_item_myreservas, parent, false);
+        mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+dataSet.sort(Comparator.comparing(Reserva::getFecha));
+
         return new ViewHolder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(final MyBikesRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final MyReservasRecyclerViewAdapter.ViewHolder holder, int position) {
         holder.mItem = dataSet.get(position);
         holder.setOnClickListeners();
 
-        holder.textViewCity.setText(dataSet.get(position).getCity());
+        holder.textViewFecha.setText(dataSet.get(position).getFecha());
         holder.textViewLocation.setText(dataSet.get(position).getLocation());
-        holder.imageViewIcon.setImageBitmap(dataSet.get(position).getImageBitmap());
+        holder.textViewCity.setText(dataSet.get(position).getCity());
+
+        //holder.imageViewIcon.setImageBitmap(dataSet.get(position).getImageBitmap());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != mListener) {
+               /* if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
                     System.out.println("CardView "+holder.mItem.getId());
-                }
+                }*/
             }
         });
     }
@@ -78,20 +89,23 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
         private final View mView;
         private final TextView textViewCity;
         private final TextView textViewLocation;
+        private final TextView textViewFecha;
+
 
         private final ImageView imageViewIcon;
         private final ImageButton imageButtonEliminar;
-        private Bike mItem;
+        private Reserva mItem;
         private Context context;
 
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            textViewCity = view.findViewById(R.id.textViewCityMyBike);
-            imageViewIcon = view.findViewById(R.id.imageViewIconMyBike);
-            textViewLocation = view.findViewById(R.id.textViewLocationMyBike);
-            imageButtonEliminar = view.findViewById(R.id.imageButtonEliminarBici);
+            textViewFecha = view.findViewById(R.id.textViewFechaReserva);
+            textViewCity = view.findViewById(R.id.textViewCityMyReserva);
+            imageViewIcon = view.findViewById(R.id.imageViewIconMyReserva);
+            textViewLocation = view.findViewById(R.id.textViewLocationMyReserva);
+            imageButtonEliminar = view.findViewById(R.id.imageButtonEliminarReserva);
             context = view.getContext();
 
         }
@@ -111,40 +125,25 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
         public void onClick(View v) {
             System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-            System.out.println(mItem.getIdUser());
+            System.out.println(mItem.getId());
             DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
 
             AlertDialog.Builder aDial= new AlertDialog.Builder(v.getContext());
             aDial.setTitle("Eliminar");
-            aDial.setMessage("¿Deseas eliminar la bicicleta? También se eliminaran las reservas asociadas");
+            aDial.setMessage("¿Deseas eliminar la reserva?");
             aDial.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    mDatabase.child("reservas").orderByChild("idBike").equalTo(mItem.getId()).addValueEventListener(new ValueEventListener() {
+                    mDatabase.child("reservas").child(mItem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            snapshot.getRef().removeValue();
-
-                            mDatabase.child("bikes_list").child(mItem.getId()).addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    snapshot.getRef().removeValue();
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                }
-                            });
-
+                             snapshot.getRef().removeValue();
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
-                    });
-
-                }
+                    });                }
             });
             aDial.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 @Override
@@ -154,8 +153,6 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
             });
             aDial.create().show();
 
-
-            Toast.makeText(v.getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -116,6 +116,11 @@ public class Bike {
         this.country = country;
     }
 
+    public Bike(String city, String location) {
+        this.city = city;
+        this.location = location;
+    }
+
     public Bike (String city, String location, String image, String id){
         this.city=city;
         this.location = location;

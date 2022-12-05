@@ -23,6 +23,7 @@ import com.example.biketheride.DatePickerFragment;
 import com.example.biketheride.MainActivity;
 import com.example.biketheride.R;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,6 +62,9 @@ public class BicisDisponiblesFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
     private DatabaseReference mDatabase;
+    private FirebaseAuth mauth;
+    List<String> resrvFecha=new ArrayList<String>();
+
     public static List<Bike> bicis =new ArrayList<Bike>();
     private StorageReference mStorageReference;
     Button btFecha;
@@ -113,6 +117,8 @@ public class BicisDisponiblesFragment extends Fragment {
         layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
+        mauth=FirebaseAuth.getInstance();
+
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
         //bicisFirebase();
@@ -126,11 +132,11 @@ public class BicisDisponiblesFragment extends Fragment {
 
             btFecha.setText(MainActivity.getFecha());
 
+            reservaFechaSelecc();
         }
         btFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Fecha");
                 showDatePickerDialog();
             }
         });
@@ -147,12 +153,37 @@ public class BicisDisponiblesFragment extends Fragment {
                 final String selectedDate = day + " / " + (month+1) + " / " + year;
                 btFecha.setText(selectedDate);
                 MainActivity.setFecha(selectedDate);
-                bicisFirebase();
+                reservaFechaSelecc();
+                //bicisFirebase();
 
             }
         });
 
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
+    private void reservaFechaSelecc(){
+        System.out.println(MainActivity.getFecha());
+        mDatabase.child("reservas").orderByChild("fecha").equalTo(MainActivity.getFecha()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                resrvFecha.clear();
+                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
+
+                    resrvFecha.add(productSnapshot.child("idBike").getValue().toString());
+
+                }
+                bicisFirebase();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void bicisFirebase() {
@@ -161,11 +192,13 @@ public class BicisDisponiblesFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 bicis.clear();
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                    Bike bike = productSnapshot.getValue(Bike.class);
-                    bicis.add(bike);
+                    System.out.println("ResrvF contains :"+productSnapshot.child("id").getValue()+" "+resrvFecha.contains(productSnapshot.child("id").getValue()));
+                    if (!(productSnapshot.child("idUser").getValue().equals(mauth.getCurrentUser().getUid()))&&!(resrvFecha.contains(productSnapshot.child("id").getValue()))){
+                        Bike bike = productSnapshot.getValue(Bike.class);
+                        bicis.add(bike);
 
-
-                    downloadPhoto(bike);
+                        downloadPhoto(bike);
+                    }
                 }
                 mAdapter.notifyDataSetChanged();
             }

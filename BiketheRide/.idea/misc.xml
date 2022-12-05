@@ -21,9 +21,11 @@
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_bicis_disponibles.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_edit_perfil.xml" value="0.22" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item.xml" value="0.33" />
-        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list_mybikes.xml" value="0.20416666666666666" />
-        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_mybikes.xml" value="0.25" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list_myreservas.xml" value="0.17" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_mybikes.xml" value="0.67" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_myreservas.xml" value="0.33" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_maps.xml" value="0.19010416666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_mensajes.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_mis_bicis.xml" value="0.18" />

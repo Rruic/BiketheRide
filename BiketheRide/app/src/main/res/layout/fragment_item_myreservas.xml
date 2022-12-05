@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical"
+    android:tag="cards main container">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_myReservas"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="5dp"
+        card_view:cardUseCompatPadding="true">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="11dp">
+
+
+            <ImageView
+                android:id="@+id/imageViewIconMyReserva"
+                android:layout_width="170dp"
+                android:layout_height="135dp"
+                android:layout_marginEnd="16dp"
+                android:tag="image_tag"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewCityMyReserva"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                card_view:layout_constraintStart_toEndOf="@+id/imageViewLocationMyReserva"
+                card_view:layout_constraintTop_toBottomOf="@+id/textViewFechaReserva" />
+
+            <TextView
+                android:id="@+id/textViewLocationMyReserva"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:fontFamily="@font/roboto"
+                android:textSize="14sp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/textViewCityMyReserva" />
+
+            <ImageView
+                android:id="@+id/imageViewLocationMyReserva"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="32dp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:srcCompat="@drawable/ic_location" />
+
+            <ImageButton
+                android:id="@+id/imageButtonEliminarReserva"
+                android:layout_width="73dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="4dp"
+                android:background="@color/white"
+                android:scaleType="fitEnd"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:srcCompat="@drawable/ic_delete" />
+
+            <TextView
+                android:id="@+id/textViewEliminarReserva"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/eliminar_reserva"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toEndOf="@+id/imageButtonEliminarReserva" />
+
+            <TextView
+                android:id="@+id/textViewFechaReserva"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
+
