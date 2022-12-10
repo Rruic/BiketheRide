@@ -14,16 +14,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.biketheride.R;
 import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
 import com.example.biketheride.ui.bike.Bike;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.List;
@@ -105,7 +108,7 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
             DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
 
-            AlertDialog.Builder aDial= new AlertDialog.Builder(v.getContext());
+            AlertDialog.Builder aDial = new AlertDialog.Builder(v.getContext());
             aDial.setTitle("Eliminar");
             aDial.setMessage("¿Deseas eliminar la bicicleta? También se eliminaran las reservas asociadas");
             aDial.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -115,17 +118,22 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
                     mDatabase.child("reservas").orderByChild("idBike").equalTo(mItem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            System.out.println(!snapshot.hasChildren());
+
                             for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                                String idUserReserva= productSnapshot.child("idUser").getValue().toString();
-                                System.out.println("Reserva "+idUserReserva);
+                                String idUserReserva = productSnapshot.child("idUser").getValue().toString();
+                                System.out.println("Reserva " + idUserReserva);
 
                                 productSnapshot.getRef().removeValue();
 
                                 mDatabase.child("bikes_list").child(mItem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        String description=snapshot.child("description").getValue().toString();
+                                        String description = snapshot.child("description").getValue().toString();
                                         snapshot.getRef().removeValue();
+                                        System.out.println("sdfsdfdf "+mItem.getImage());
+                                        eliminarImagenStorage(mItem.getId());
+
                                         String msg = "Disculpe pero la bicicleta con descripción " + description + ", en " + mItem.getCity() + ", " + mItem.getLocation() + "ya no esta en alquiler.";
                                         sendMsg(msg, idUserReserva);
                                     }
@@ -135,6 +143,18 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
                                     }
                                 });
 
+                            }
+                            if (!snapshot.hasChildren()){
+                                mDatabase.child("bikes_list").child(mItem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        snapshot.getRef().removeValue();
+                                        eliminarImagenStorage(mItem.getId());
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                    }
+                                });
                             }
                         }
 
@@ -158,9 +178,32 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
             Toast.makeText(v.getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_LONG).show();
         }
 
-        private void sendMsg(final String message,String idUserBike) {
+        public void eliminarImagenStorage(String image) {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
 
-            String myId=FirebaseAuth.getInstance().getCurrentUser().getUid();
+            //StorageReference imagesRef = storageRef.child("images")
+
+            // Create a reference to the file to delete
+            StorageReference desertRef = storageRef.child(image);
+
+            // Delete the file
+            desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    // File deleted successfully
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Uh-oh, an error occurred!
+                }
+            });
+        }
+
+        private void sendMsg(final String message, String idUserBike) {
+
+            String myId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
             //String adminId="KpAlrOkLa0Oa4wlJEKPClSzxk2u2";
             //String idUserBike=mItem.getIdUser();
