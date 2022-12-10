@@ -40,14 +40,14 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
     }
 
     @Override
-    public MyBikesRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_item_mybikes, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MyBikesRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = dataSet.get(position);
         holder.setOnClickListeners();
 

@@ -45,7 +45,7 @@ public class MyReservasRecyclerViewAdapter extends RecyclerView.Adapter<MyReserv
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public MyReservasRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_item_myreservas, parent, false);
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
@@ -56,7 +56,7 @@ dataSet.sort(Comparator.comparing(Reserva::getFecha));
 
 
     @Override
-    public void onBindViewHolder(final MyReservasRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = dataSet.get(position);
         holder.setOnClickListeners();
 

@@ -1,6 +1,7 @@
 package com.example.biketheride.ui.bike;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biketheride.MainActivity;
 import com.example.biketheride.R;
+import com.example.biketheride.chat.ChatActivity;
 import com.example.biketheride.reserva.Reserva;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -79,6 +81,18 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         holder.textViewLocation.setText(dataSet.get(position).getLocation());
         holder.textViewDescription.setText(dataSet.get(position).getDescription());
         holder.imageViewIcon.setImageBitmap(dataSet.get(position).getImageBitmap());
+        holder.imageViewChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ChatActivity.class);
+
+                // putting uid of user in extras
+                String uidUserB=dataSet.get(position).getIdUser();
+                intent.putExtra("uid",uidUserB);
+                view.getContext().startActivity(intent);
+                System.out.println("Chat");
+            }
+        });
 
         /*holder.imageButtonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +166,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         private final TextView textViewCity;
         private final TextView textViewLocation;
         private final TextView textViewDescription;
+        private final ImageView imageViewChat;
 
         private final ImageView imageViewIcon;
         private final ImageButton imageButtonEmail;
@@ -168,6 +183,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             textViewLocation = view.findViewById(R.id.textViewLocation);
             textViewDescription = view.findViewById(R.id.textViewDescription);
             imageButtonEmail = view.findViewById(R.id.imageButtonEmailCard);
+            imageViewChat=view.findViewById(R.id.ivChat);
             context = view.getContext();
 
         }
