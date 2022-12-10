@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecyclerViewAdapter.ViewHolder> {
@@ -55,17 +56,6 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
         holder.textViewLocation.setText(dataSet.get(position).getLocation());
         holder.imageViewIcon.setImageBitmap(dataSet.get(position).getImageBitmap());
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                    System.out.println("CardView "+holder.mItem.getId());
-                }
-            }
-        });
     }
 
     @Override
@@ -121,21 +111,31 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
             aDial.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    mDatabase.child("reservas").orderByChild("idBike").equalTo(mItem.getId()).addValueEventListener(new ValueEventListener() {
+                    //mDatabase.child("reservas")
+                    mDatabase.child("reservas").orderByChild("idBike").equalTo(mItem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            snapshot.getRef().removeValue();
+                            for (DataSnapshot productSnapshot : snapshot.getChildren()) {
+                                String idUserReserva= productSnapshot.child("idUser").getValue().toString();
+                                System.out.println("Reserva "+idUserReserva);
 
-                            mDatabase.child("bikes_list").child(mItem.getId()).addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    snapshot.getRef().removeValue();
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                }
-                            });
+                                productSnapshot.getRef().removeValue();
 
+                                mDatabase.child("bikes_list").child(mItem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String description=snapshot.child("description").getValue().toString();
+                                        snapshot.getRef().removeValue();
+                                        String msg = "Disculpe pero la bicicleta con descripción " + description + ", en " + mItem.getCity() + ", " + mItem.getLocation() + "ya no esta en alquiler.";
+                                        sendMsg(msg, idUserReserva);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                    }
+                                });
+
+                            }
                         }
 
                         @Override
@@ -156,6 +156,51 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
 
 
             Toast.makeText(v.getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_LONG).show();
+        }
+
+        private void sendMsg(final String message,String idUserBike) {
+
+            String myId=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            //String adminId="KpAlrOkLa0Oa4wlJEKPClSzxk2u2";
+            //String idUserBike=mItem.getIdUser();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("sender", myId);
+            hashMap.put("receiver", idUserBike);
+            hashMap.put("message", message);
+            hashMap.put("timestamp", timestamp);
+            databaseReference.child("chats").push().setValue(hashMap);
+            final DatabaseReference ref1 = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference("chatList").child(idUserBike).child(myId);
+            ref1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        ref1.child("id").setValue(myId);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            final DatabaseReference ref2 = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference("chatList").child(myId).child(idUserBike);
+            ref2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (!dataSnapshot.exists()) {
+                        ref2.child("id").setValue(idUserBike);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 }

@@ -103,8 +103,8 @@ dataSet.sort(Comparator.comparing(Reserva::getFecha));
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ChatActivity.class);
 
-                String uidUserB=dataSet.get(position).getIdUser();
-                intent.putExtra("uid",uidUserB);
+                //String uidUserB=dataSet.get(position).getIdUser();
+                intent.putExtra("uid",idUserBike);
                 view.getContext().startActivity(intent);
                 System.out.println("Chat");
             }

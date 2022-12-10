@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/textViewCity"
-                android:layout_width="111dp"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
@@ -51,7 +51,7 @@
 
             <TextView
                 android:id="@+id/textViewLocation"
-                android:layout_width="wrap_content"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"

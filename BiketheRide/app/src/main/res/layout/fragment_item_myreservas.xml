@@ -31,48 +31,25 @@
                 android:id="@+id/ivChatReserva"
                 android:layout_width="50dp"
                 android:layout_height="45dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toStartOf="@+id/textViewReserva"
+                card_view:layout_constraintEnd_toStartOf="@+id/textViewOwnerReserva"
                 card_view:srcCompat="@drawable/ic_mensaje" />
 
             <TextView
-                android:id="@+id/textViewReserva"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="92dp"
-                android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto"
-                android:text="@string/contactar"
-                android:textStyle="bold"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
                 android:id="@+id/textViewOwnerReserva"
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="104dp"
                 android:layout_marginEnd="4dp"
                 android:fontFamily="@font/roboto"
                 android:textSize="14sp"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageViewIconUserReserva"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="4dp"
-                card_view:layout_constraintEnd_toStartOf="@+id/textViewOwnerReserva"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:srcCompat="@drawable/ic_person" />
-
             <TextView
                 android:id="@+id/textViewCityMyReserva"
-                android:layout_width="150dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
@@ -84,7 +61,7 @@
 
             <TextView
                 android:id="@+id/textViewLocationMyReserva"
-                android:layout_width="150dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:fontFamily="@font/roboto"
