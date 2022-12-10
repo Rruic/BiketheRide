@@ -5,23 +5,48 @@
       <map>
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_delete.xml" value="0.1" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_email.xml" value="0.103" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_iattach.xml" value="0.1235" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_images.xml" value="0.1175" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_insert_photo.xml" value="0.1235" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_key.xml" value="0.103" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_location.xml" value="0.1165" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_menu.xml" value="0.1175" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_person.xml" value="0.1" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_save.xml" value="0.103" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/ic_unblock.xml" value="0.1175" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-anydpi/send_message.xml" value="0.1175" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-hdpi/back_msg_l.xml" value="0.1235" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-hdpi/back_msg_r.xml" value="0.1175" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-hdpi/bg_receiver.xml" value="0.1175" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-hdpi/bg_sender.xml" value="0.1175" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1165" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable-xhdpi/round_back_light_10.xml" value="0.1" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/back_btn.xml" value="0.1" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/back_msg_l.xml" value="0.12" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/back_msg_r.xml" value="0.1175" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/corners.xml" value="0.1905" />
-        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/ic_grey_search_24.xml" value="0.1" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1165" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/myrect.xml" value="0.1" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/profile_image.xml" value="0.1165" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_bt.xml" value="0.1945" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_btEnable.xml" value="0.1025" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_bt_disable.xml" value="0.1175" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_bt_enable.xml" value="0.1025" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/rounded_corners_ed.xml" value="0.1025" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/drawable/search_back.xml" value="0.1" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity2_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/activity_registrar.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/chat_profile_item.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_bicis_disponibles.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_chat_list.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_chatlist.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_edit_perfil.xml" value="0.22" />
-        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item.xml" value="0.33" />
-        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list.xml" value="0.25" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item.xml" value="0.25" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list.xml" value="0.2" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list_mybikes.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_list_myreservas.xml" value="0.17" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_item_mybikes.xml" value="0.67" />
@@ -31,9 +56,18 @@
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_mis_bicis.xml" value="0.18" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_registrar_bici.xml" value="0.25" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_reservas.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/fragment_users.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/header_navigation_drawer.xml" value="0.25" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/messages_adapter_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/row_chat_left.xml" value="0.33" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/row_chat_right.xml" value="0.22" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/row_chatlist.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/row_users.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/layout/toolbar.xml" value="0.20416666666666666" />
         <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/menu/navigation_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1165" />
+        <entry key="..\:/DAM/Proyectos Android/BiketheRide/BiketheRide/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1165" />
       </map>
     </option>
   </component>

@@ -11,7 +11,7 @@
         android:id="@+id/btFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/azul"
+        android:background="#8CB8FF"
         android:fontFamily="@font/roboto"
         android:text="@string/SelecFecha"
         android:textColor="@color/white"
@@ -23,11 +23,12 @@
         android:id="@+id/listBike"
         android:name="ItemFragment"
         android:layout_width="match_parent"
-        android:layout_height="685dp"
+        android:layout_height="0dp"
         android:background="@color/white"
         android:scrollbars="vertical"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btFecha"
         tools:context=".ui.bike.BicisDisponiblesFragment"
         tools:listitem="@layout/fragment_item">
 

@@ -15,6 +15,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.biketheride.chat.ChatListFragment;
 import com.example.biketheride.databinding.ActivityMainBinding;
 import com.example.biketheride.mybikes.MisBicisFragment;
 import com.example.biketheride.reserva.ReservasFragment;
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
                         fragmentTransaction = true;
                         break;
                     case R.id.mensajes:
-                        fragment = new MensajesFragment();
+                        fragment = new ChatListFragment();
                         fragmentTransaction = true;
                         break;
                     case R.id.misBicis:
@@ -165,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
     private void setToolbar(){
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

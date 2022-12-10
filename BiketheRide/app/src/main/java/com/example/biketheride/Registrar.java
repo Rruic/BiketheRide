@@ -63,7 +63,7 @@ public class Registrar extends AppCompatActivity {
                 map.put("name", nombreUser);
                 map.put("email", emailUser);
                 map.put("password", passUser);*/
-                    User user=new User(nombreUser,mAuth.getCurrentUser().getEmail(),mAuth.getCurrentUser().getUid());
+                    ModeloUser user=new ModeloUser(nombreUser,mAuth.getCurrentUser().getEmail(),mAuth.getCurrentUser().getUid());
                     user.addToDatabase(mAuth.getCurrentUser().getUid());
                     Toast.makeText(Registrar.this, "Usuario registrado correctamente", Toast.LENGTH_LONG).show();
                     finish();

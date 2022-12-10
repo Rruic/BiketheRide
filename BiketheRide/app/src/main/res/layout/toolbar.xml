@@ -6,7 +6,7 @@
     style="@style/Toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/myrect"
+    android:background="@color/theme_color"
     android:backgroundTintMode="src_in"
     android:minHeight="?attr/actionBarSize"
     android:theme="?attr/actionBarTheme"

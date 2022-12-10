@@ -29,7 +29,8 @@
     <string name="eliminar_bicicleta">Eliminar bicicleta</string>
     <string name="eliminar_reserva">Eliminar reserva</string>
     <string name="bicis_vacio_fragment">No hay bicicletas disponibles para la fecha seleccionada</string>
-
+    <string name="date_msg">00/00/0000 00:00</string>
+    <string name="contactar">Contactar</string>
 
 
 

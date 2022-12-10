@@ -11,6 +11,10 @@
     <color name="gris">#979899</color>
 
 
+    <color name="theme_color">#2176FF</color>
+    <color name="theme_color_80">#CC2176FF</color>
+    <color name="theme_color_8">#142176FF</color>
+    <color name="background_msg_r">#A5C7FF</color>
 
     <color name="window_background">#FFF5F5F5</color>
 

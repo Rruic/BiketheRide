@@ -6,11 +6,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class User {
+public class ModeloUser {
 
     private String uid;
     private String name;
     private String email;
+    private String onlineStatus;
+
 
     public String getName() {
         return name;
@@ -36,17 +38,26 @@ public class User {
         this.uid = uid;
     }
 
-    private static User mInstance;
+    public String getOnlineStatus() {
+        return onlineStatus;
+    }
+
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
+
+    private static ModeloUser mInstance;
 
     //nobody can instantiate
-    public User() {
+    public ModeloUser() {
 
     }
 
-    public User(String name, String email, String uid) {
+    public ModeloUser(String name, String email, String uid,String onlineStatus) {
         this.name = name;
         this.email = email;
         this.uid = uid;
+        this.onlineStatus=onlineStatus;
     }
 
     public void addToDatabase(String uid){
@@ -57,9 +68,9 @@ public class User {
         database.child("user/"+uid).setValue(this);
     }
 
-    public static User getInstance() {
+    public static ModeloUser getInstance() {
         if (mInstance == null)
-            mInstance = new User();
+            mInstance = new ModeloUser();
         return mInstance;
     }
 }
