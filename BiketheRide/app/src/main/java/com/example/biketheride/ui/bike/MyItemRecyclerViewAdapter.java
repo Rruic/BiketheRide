@@ -1,6 +1,7 @@
 package com.example.biketheride.ui.bike;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biketheride.MainActivity;
@@ -21,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,7 +89,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ChatActivity.class);
 
-                // putting uid of user in extras
                 String uidUserB=dataSet.get(position).getIdUser();
                 intent.putExtra("uid",uidUserB);
                 view.getContext().startActivity(intent);
@@ -202,24 +204,85 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         @Override
         public void onClick(View v) {
 
-            String idUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-            String id=mDatabase.child("reserva").push().getKey();
-
-            //System.out.println(dataSet.get(position).getIdUser());
-            String idBike=mItem.getId();
-            String city=mItem.getCity();
-            String location=mItem.getLocation();
+            AlertDialog.Builder aDial= new AlertDialog.Builder(v.getContext());
+            aDial.setTitle("Reservar");
+            aDial.setMessage("¿Deseas reservar esta bicicleta?");
+            aDial.setPositiveButton("Reservar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
 
-            Reserva reserva = new Reserva(id,idUser,idBike, MainActivity.getFecha(),city,location);
+                    String idUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String id=mDatabase.child("reserva").push().getKey();
 
-            //reserva.addToDatabase(id);
+                    //System.out.println(dataSet.get(position).getIdUser());
+                    String idBike=mItem.getId();
+                    String city=mItem.getCity();
+                    String location=mItem.getLocation();
 
-            addToDatabase(reserva,id,context);
+                    Reserva reserva = new Reserva(id,idUser,idBike, MainActivity.getFecha(),city,location);
+                    //reserva.addToDatabase(id);
 
+                    addToDatabase(reserva,id,context);
+                    String msg="Hola, he reservado su bicicleta con descripción "+mItem.getDescription()+", en "+mItem.getCity()+", "+mItem.getLocation()+", para la fecha "+MainActivity.getFecha();
+                    sendMsg(msg,mItem.getIdUser());
 
-            Toast.makeText(v.getContext(), "Reserva realizada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(v.getContext(), "Reserva realizada", Toast.LENGTH_LONG).show();
+                }
+            });
+            aDial.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    System.out.println("No");
+                }
+            });
+            aDial.create().show();
+
+        }
+
+        private void sendMsg(final String message,String idUserBike) {
+
+            String myId=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            //String adminId="KpAlrOkLa0Oa4wlJEKPClSzxk2u2";
+            //String idUserBike=mItem.getIdUser();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("sender", myId);
+            hashMap.put("receiver", idUserBike);
+            hashMap.put("message", message);
+            hashMap.put("timestamp", timestamp);
+            databaseReference.child("chats").push().setValue(hashMap);
+            final DatabaseReference ref1 = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference("chatList").child(idUserBike).child(myId);
+            ref1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        ref1.child("id").setValue(myId);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            final DatabaseReference ref2 = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference("chatList").child(myId).child(idUserBike);
+            ref2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (!dataSnapshot.exists()) {
+                        ref2.child("id").setValue(idUserBike);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 }
