@@ -31,7 +31,7 @@
 
         <activity android:name=".chat.ChatActivity"/>
         <activity
-            android:name=".Registrar"
+            android:name=".RegistrarUser"
             android:exported="true" />
         <activity
             android:name=".Login"

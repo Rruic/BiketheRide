@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -21,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.biketheride.MainActivity;
 import com.example.biketheride.R;
 import com.example.biketheride.chat.ChatActivity;
-import com.example.biketheride.ui.bike.Bike;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -29,7 +29,7 @@
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btFecha"
-        tools:context=".ui.bike.BicisDisponiblesFragment"
+        tools:context=".bike.BicisDisponiblesFragment"
         tools:listitem="@layout/fragment_item">
 
     </androidx.recyclerview.widget.RecyclerView>

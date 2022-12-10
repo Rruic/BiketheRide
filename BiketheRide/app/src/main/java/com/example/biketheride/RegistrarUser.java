@@ -14,7 +14,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Registrar extends AppCompatActivity {
+public class RegistrarUser extends AppCompatActivity {
 
     private ActivityRegistrarBinding binding;
 
@@ -43,7 +43,7 @@ public class Registrar extends AppCompatActivity {
 
                 System.out.println(emailUser.isEmpty()+" "+passUser.isEmpty()+" ");
                 if (emailUser.isEmpty() || passUser.isEmpty() || nombreUser.isEmpty()) {
-                    Toast.makeText(Registrar.this, "Complete los datos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrarUser.this, "Complete los datos", Toast.LENGTH_SHORT).show();
                 } else {
                     registrarUser(nombreUser, emailUser, passUser);
                 }
@@ -65,11 +65,11 @@ public class Registrar extends AppCompatActivity {
                 map.put("password", passUser);*/
                     ModeloUser user=new ModeloUser(nombreUser,mAuth.getCurrentUser().getEmail(),mAuth.getCurrentUser().getUid(),"");
                     user.addToDatabase(mAuth.getCurrentUser().getUid());
-                    Toast.makeText(Registrar.this, "Usuario registrado correctamente", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrarUser.this, "Usuario registrado correctamente", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
                     //Toast.makeText(Registrar.this,"Error de registro",Toast.LENGTH_LONG).show();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Registrar.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarUser.this);
 
                     builder.setTitle("Error de registro");
                     builder.setMessage("Comprueba que el correo electrónico sea válido y la contraseña tenga como mínimo 6 caracteres");

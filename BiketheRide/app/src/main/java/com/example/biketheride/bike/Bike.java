@@ -1,4 +1,4 @@
-package com.example.biketheride.ui.bike;
+package com.example.biketheride.bike;
 
 import android.graphics.Bitmap;
 

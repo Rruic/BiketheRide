@@ -16,11 +16,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.chat.ChatListFragment;
-import com.example.biketheride.databinding.ActivityMainBinding;
 import com.example.biketheride.mybikes.MisBicisFragment;
 import com.example.biketheride.reserva.ReservasFragment;
-import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
-import com.example.biketheride.ui.bike.Bike;
+import com.example.biketheride.bike.BicisDisponiblesFragment;
+import com.example.biketheride.bike.Bike;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

@@ -1,6 +1,6 @@
 package com.example.biketheride;
 
-import static com.example.biketheride.ui.bike.BicisDisponiblesFragment.bicis;
+import static com.example.biketheride.bike.BicisDisponiblesFragment.bicis;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.biketheride.ui.bike.Bike;
+import com.example.biketheride.bike.Bike;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,7 +20,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsFragment extends Fragment {
 

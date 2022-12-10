@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biketheride.R;
-import com.example.biketheride.ui.bike.BicisDisponiblesFragment;
-import com.example.biketheride.ui.bike.Bike;
+import com.example.biketheride.bike.BicisDisponiblesFragment;
+import com.example.biketheride.bike.Bike;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

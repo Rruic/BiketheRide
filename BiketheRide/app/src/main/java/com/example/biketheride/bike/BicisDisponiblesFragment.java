@@ -1,4 +1,4 @@
-package com.example.biketheride.ui.bike;
+package com.example.biketheride.bike;
 
 import static android.content.ContentValues.TAG;
 
