@@ -24,12 +24,11 @@
 ## Documentos  
   
 
-📖 [Manual de usuario](http://example/com)  
+📖 [Manual de usuario](https://github.com/Rruic/BiketheRide/blob/master/docs/Manual%20Bikethe%20Ride.pdf)  
   
 
-🙂 [Wiki del proyecto](http://example/com)  
+🙂 [Proyecto](https://github.com/Rruic/BiketheRide/blob/master/docs/Bikethe%20Ride.pdf)  
 
 <br />
 
 ----
-<div align="center">Generated using <a href="https://profilinator.rishav.dev/" target="_blank">Github Profilinator</a></div>
