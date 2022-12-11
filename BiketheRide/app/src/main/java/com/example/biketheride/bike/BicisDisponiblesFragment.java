@@ -115,6 +115,7 @@ public class BicisDisponiblesFragment extends Fragment {
         mAdapter = new MyItemRecyclerViewAdapter(bicis, mListener);
 
         recyclerView.setAdapter(mAdapter);
+        bicis.clear();
 
         btFecha=view.findViewById(R.id.btFecha);
         if (MainActivity.getFecha()!=null){
