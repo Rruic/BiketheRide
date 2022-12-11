@@ -129,7 +129,6 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         String description = snapshot.child("description").getValue().toString();
                                         snapshot.getRef().removeValue();
-                                        System.out.println("sdfsdfdf "+mItem.getImage());
                                         eliminarImagenStorage(mItem.getId());
 
                                         String msg = "Disculpe pero la bicicleta con descripción " + description + ", en " + mItem.getCity() + ", " + mItem.getLocation() + " ya no esta en alquiler.";
