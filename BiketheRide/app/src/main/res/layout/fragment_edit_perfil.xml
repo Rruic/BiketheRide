@@ -59,7 +59,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textEmailAddress"
         app:layout_constraintStart_toEndOf="@+id/imageViewEmail"
         app:layout_constraintTop_toBottomOf="@+id/etEditName" />
 

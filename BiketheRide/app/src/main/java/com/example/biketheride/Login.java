@@ -81,13 +81,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-// Sign in success, update UI with the signed-in user's information
+// Inicio de sesion correcto
                         Log.d(TAG, "signInWithCredential:success");
 
                         irMain(task.getResult().getUser().getEmail());
 
                     } else {
-// If sign in fails, display a message to the user.
+// Fallo de inicio de sesión
                         mostrarAlert();
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                     }
@@ -103,18 +103,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-// Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+// Resultado devuelto al iniciar el Intent desde GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-// Google Sign In was successful, authenticate with Firebase
+// Google Sign In fue exitoso, autenticar con Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
 
 
             } catch (ApiException e) {
-// Google Sign In failed, update UI appropriately
+// Falló el inicio de sesión de Google
                 Log.w(TAG, "Google sign in failed", e);
             }
         }
@@ -127,7 +127,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-// Sign in success, update UI with the signed-in user's information
+// Inicio de sesión correcto
                             Log.d(TAG, "signInWithCredential:success");
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
@@ -135,7 +135,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     if (!snapshot.exists()){
-                                        System.out.println("No existe");
 
                                         ModeloUser user=new ModeloUser(mAuth.getCurrentUser().getDisplayName(),mAuth.getCurrentUser().getEmail(),mAuth.getCurrentUser().getUid(),"");
                                         user.addToDatabase(mAuth.getCurrentUser().getUid());
@@ -175,6 +174,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra("email", email);
         startActivity(i);
+        binding.etEmail.setText("");
+        binding.etPassword.setText("");
+
 
     }
 

@@ -41,7 +41,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     //Context context;
 
 
-
     private final BicisDisponiblesFragment.OnListFragmentInteractionListener mListener;
 
     public MyItemRecyclerViewAdapter(List<Bike> items, BicisDisponiblesFragment.OnListFragmentInteractionListener listener) {
@@ -63,7 +62,6 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = dataSet.get(position);
         holder.setOnClickListeners();
-        System.out.println("User:"+dataSet.get(position).getIdUser());
         mDatabase.child("user").child(dataSet.get(position).getIdUser()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -88,68 +86,24 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ChatActivity.class);
 
-                String uidUserB=dataSet.get(position).getIdUser();
-                intent.putExtra("uid",uidUserB);
+                String uidUserB = dataSet.get(position).getIdUser();
+                intent.putExtra("uid", uidUserB);
                 view.getContext().startActivity(intent);
                 System.out.println("Chat");
             }
         });
-
-        /*holder.imageButtonEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*String idUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                String id=mDatabase.child("reserva").push().getKey();
-
-                System.out.println(dataSet.get(position).getIdUser());
-                String idBike=dataSet.get(position).getId();
-                String city=dataSet.get(position).getCity();
-                String location=dataSet.get(position).getLocation();
-
-
-                Reserva reserva = new Reserva(id,idUser,idBike, MainActivity.getFecha(),city,location);
-
-                //reserva.addToDatabase(id);
-
-                addToDatabase(reserva,id,view);
-
-
-            }
-
-        });*/
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    System.out.println("Aquiiiiiiiiisdf-------");
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
     }
 
-    public void addToDatabase(Reserva reserva, String id,Context context){
-        DatabaseReference database= FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
-        String key= database.child("reservas").push().getKey();
-        Map<String, Object> childUpdates = new HashMap<>();
-        database.child("reservas/"+id).setValue(reserva).addOnSuccessListener(new OnSuccessListener<Void>() {
+    public void addToDatabase(Reserva reserva, String id, Context context) {
+        DatabaseReference database = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+        database.child("reservas/" + id).setValue(reserva).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                System.out.println("En reserva OK");
                 Toast.makeText(context, "Reserva realizada", Toast.LENGTH_LONG).show();
-
-
             }
         }).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
-
-
 
             }
         });
@@ -184,7 +138,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             textViewLocation = view.findViewById(R.id.textViewLocation);
             textViewDescription = view.findViewById(R.id.textViewDescription);
             imageButtonEmail = view.findViewById(R.id.imageButtonEmailCard);
-            imageViewChat=view.findViewById(R.id.ivChat);
+            imageViewChat = view.findViewById(R.id.ivChat);
             context = view.getContext();
 
         }
@@ -203,28 +157,25 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         @Override
         public void onClick(View v) {
 
-            AlertDialog.Builder aDial= new AlertDialog.Builder(v.getContext());
+            AlertDialog.Builder aDial = new AlertDialog.Builder(v.getContext());
             aDial.setTitle("Reservar");
             aDial.setMessage("¿Deseas reservar esta bicicleta?");
             aDial.setPositiveButton("Reservar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
+                    String idUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String id = mDatabase.child("reserva").push().getKey();
 
-                    String idUser= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    String id=mDatabase.child("reserva").push().getKey();
+                    String idBike = mItem.getId();
+                    String city = mItem.getCity();
+                    String location = mItem.getLocation();
 
-                    //System.out.println(dataSet.get(position).getIdUser());
-                    String idBike=mItem.getId();
-                    String city=mItem.getCity();
-                    String location=mItem.getLocation();
+                    Reserva reserva = new Reserva(id, idUser, idBike, MainActivity.getFecha(), city, location);
 
-                    Reserva reserva = new Reserva(id,idUser,idBike, MainActivity.getFecha(),city,location);
-                    //reserva.addToDatabase(id);
-
-                    addToDatabase(reserva,id,context);
-                    String msg="Hola, he reservado su bicicleta con descripción "+mItem.getDescription()+", en "+mItem.getCity()+", "+mItem.getLocation()+", para la fecha "+MainActivity.getFecha();
-                    sendMsg(msg,mItem.getIdUser());
+                    addToDatabase(reserva, id, context);
+                    String msg = "Hola, he reservado su bicicleta con descripción " + mItem.getDescription() + ", en " + mItem.getCity() + ", " + mItem.getLocation() + ", para la fecha " + MainActivity.getFecha();
+                    sendMsg(msg, mItem.getIdUser());
 
                     Toast.makeText(v.getContext(), "Reserva realizada", Toast.LENGTH_LONG).show();
                 }
@@ -232,19 +183,16 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
             aDial.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    System.out.println("No");
                 }
             });
             aDial.create().show();
 
         }
 
-        private void sendMsg(final String message,String idUserBike) {
+        private void sendMsg(final String message, String idUserBike) {
 
-            String myId=FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String myId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            //String adminId="KpAlrOkLa0Oa4wlJEKPClSzxk2u2";
-            //String idUserBike=mItem.getIdUser();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
             String timestamp = String.valueOf(System.currentTimeMillis());
             HashMap<String, Object> hashMap = new HashMap<>();

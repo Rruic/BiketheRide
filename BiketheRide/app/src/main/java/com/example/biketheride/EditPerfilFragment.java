@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.bike.BicisDisponiblesFragment;
+import com.example.biketheride.databinding.FragmentEditPerfilBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +29,6 @@ import java.util.regex.Pattern;
 public class EditPerfilFragment extends Fragment implements View.OnClickListener {
 
     private FragmentEditPerfilBinding binding;
-
 
     private FirebaseAuth mauth;
     private DatabaseReference mDatabase;
@@ -53,7 +53,7 @@ public class EditPerfilFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // inflar layout de fragment
         mauth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
@@ -61,18 +61,12 @@ public class EditPerfilFragment extends Fragment implements View.OnClickListener
         binding = FragmentEditPerfilBinding.inflate(inflater, container, false);
         View v = binding.getRoot();
 
-        // mainActivity.getMauth();
-        //   binding.etEditName.setHint(nombre);
-        //    binding.etEditEmail.setHint(email);
-
         obtenerDatos();
-
 
         binding.btVolverPerfil.setOnClickListener(this);
         binding.ibtSaveName.setOnClickListener(this);
         binding.ibtSaveEmail.setOnClickListener(this);
         binding.ibtSavePass.setOnClickListener(this);
-
 
         return v;
     }
@@ -106,7 +100,6 @@ public class EditPerfilFragment extends Fragment implements View.OnClickListener
                 binding.etEditName.setHint(tvnombre);
                 binding.etEditEmail.setHint(tvemail);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -182,13 +175,10 @@ public class EditPerfilFragment extends Fragment implements View.OnClickListener
                 mDatabase.child("user").child(mauth.getCurrentUser().getUid()).child("email").setValue(email);
                 Toast.makeText(getContext(), "Email actualizado correctamente", Toast.LENGTH_SHORT).show();
                 binding.etEditEmail.setText("");
-
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
                 String mensaje = "Error al actualizar el email. Reinicia la sesión o prueba con otra dirección de correo electrónico.";
 
                 alertError(mensaje);
@@ -229,10 +219,7 @@ public class EditPerfilFragment extends Fragment implements View.OnClickListener
         mauth.getCurrentUser().updatePassword(pass).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-
-
                 Toast.makeText(getContext(), "Contraseña actualizada correctamente", Toast.LENGTH_SHORT).show();
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

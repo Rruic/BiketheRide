@@ -94,14 +94,12 @@ dataSet.sort(Comparator.comparing(Reserva::getFecha));
         });
 
 
-        //holder.imageViewIcon.setImageBitmap(dataSet.get(position).getImageBitmap());
 
         holder.imageViewChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ChatActivity.class);
 
-                //String uidUserB=dataSet.get(position).getIdUser();
                 intent.putExtra("uid",idUserBike);
                 view.getContext().startActivity(intent);
                 System.out.println("Chat");
@@ -166,9 +164,7 @@ dataSet.sort(Comparator.comparing(Reserva::getFecha));
 
         @Override
         public void onClick(View v) {
-            System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-            System.out.println(mItem.getId());
             DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
             AlertDialog.Builder aDial= new AlertDialog.Builder(v.getContext());

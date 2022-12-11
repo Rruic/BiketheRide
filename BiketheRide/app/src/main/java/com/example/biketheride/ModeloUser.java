@@ -62,9 +62,6 @@ public class ModeloUser {
 
     public void addToDatabase(String uid){
         DatabaseReference database= FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
-        String key= database.child("user").push().getKey();
-        String mail=getEmail().replace(".","");
-        Map<String, Object> childUpdates = new HashMap<>();
         database.child("user/"+uid).setValue(this);
     }
 

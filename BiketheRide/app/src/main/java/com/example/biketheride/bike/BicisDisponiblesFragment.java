@@ -73,15 +73,6 @@ public class BicisDisponiblesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BicisDisponiblesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static BicisDisponiblesFragment newInstance(String param1, String param2) {
         BicisDisponiblesFragment fragment = new BicisDisponiblesFragment();
         Bundle args = new Bundle();
@@ -121,8 +112,6 @@ public class BicisDisponiblesFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
-        //bicisFirebase();
-
         mAdapter = new MyItemRecyclerViewAdapter(bicis, mListener);
 
         recyclerView.setAdapter(mAdapter);
@@ -154,7 +143,6 @@ public class BicisDisponiblesFragment extends Fragment {
                 btFecha.setText(selectedDate);
                 MainActivity.setFecha(selectedDate);
                 reservaFechaSelecc();
-                //bicisFirebase();
 
             }
         });
@@ -163,19 +151,14 @@ public class BicisDisponiblesFragment extends Fragment {
     }
 
     private void reservaFechaSelecc(){
-        System.out.println(MainActivity.getFecha());
         mDatabase.child("reservas").orderByChild("fecha").equalTo(MainActivity.getFecha()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 resrvFecha.clear();
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-
                     resrvFecha.add(productSnapshot.child("idBike").getValue().toString());
-
                 }
                 bicisFirebase();
-
-
             }
 
             @Override
@@ -192,7 +175,6 @@ public class BicisDisponiblesFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 bicis.clear();
                 for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                    System.out.println("ResrvF contains :"+productSnapshot.child("id").getValue()+" "+resrvFecha.contains(productSnapshot.child("id").getValue()));
                     if (!(productSnapshot.child("idUser").getValue().equals(mauth.getCurrentUser().getUid()))&&!(resrvFecha.contains(productSnapshot.child("id").getValue()))){
                         Bike bike = productSnapshot.getValue(Bike.class);
                         bicis.add(bike);
@@ -215,7 +197,6 @@ public class BicisDisponiblesFragment extends Fragment {
     private void downloadPhoto(Bike c) {
 
         mStorageReference = FirebaseStorage.getInstance().getReferenceFromUrl(c.getImage());
-        System.out.println("Imagen download: " + mStorageReference);
 
         try {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

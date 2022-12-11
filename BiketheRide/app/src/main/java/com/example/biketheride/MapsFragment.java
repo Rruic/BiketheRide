@@ -2,14 +2,15 @@ package com.example.biketheride;
 
 import static com.example.biketheride.bike.BicisDisponiblesFragment.bicis;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.biketheride.bike.Bike;
 import com.google.android.gms.maps.CameraUpdate;
@@ -38,24 +39,25 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            /*LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
 
             mMap = googleMap;
 
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-            for (Bike c : bicis) {
+            if (bicis.size() > 0) {
+                for (Bike c : bicis) {
 
-                LatLng ll = new LatLng(Double.valueOf(c.getLatitude()), Double.valueOf(c.getLongitude()));
-                //añade marcador al mapa con la posición de la bici
-                mMap.addMarker(new MarkerOptions().position(ll).title(c.getCity()).snippet(String.valueOf(c.getLocation())));
-                builder.include(ll);
+                    LatLng ll = new LatLng(Double.valueOf(c.getLatitude()), Double.valueOf(c.getLongitude()));
+                    //añade marcador al mapa con la posición de la bici
+                    mMap.addMarker(new MarkerOptions().position(ll).title(c.getCity()).snippet(String.valueOf(c.getLocation())));
+                    builder.include(ll);
+                }
+                LatLngBounds bounds = builder.build();
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
+                mMap.animateCamera(cu);
+            }else{
+                Toast.makeText(getContext(), "No hay ninguna bicicleta para mostrar", Toast.LENGTH_SHORT).show();
             }
-            LatLngBounds bounds = builder.build();
-            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 100);
-            mMap.animateCamera(cu);
         }
     };
 

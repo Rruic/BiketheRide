@@ -118,11 +118,9 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
                     mDatabase.child("reservas").orderByChild("idBike").equalTo(mItem.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            System.out.println(!snapshot.hasChildren());
 
                             for (DataSnapshot productSnapshot : snapshot.getChildren()) {
                                 String idUserReserva = productSnapshot.child("idUser").getValue().toString();
-                                System.out.println("Reserva " + idUserReserva);
 
                                 productSnapshot.getRef().removeValue();
 
@@ -134,7 +132,7 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
                                         System.out.println("sdfsdfdf "+mItem.getImage());
                                         eliminarImagenStorage(mItem.getId());
 
-                                        String msg = "Disculpe pero la bicicleta con descripción " + description + ", en " + mItem.getCity() + ", " + mItem.getLocation() + "ya no esta en alquiler.";
+                                        String msg = "Disculpe pero la bicicleta con descripción " + description + ", en " + mItem.getCity() + ", " + mItem.getLocation() + " ya no esta en alquiler.";
                                         sendMsg(msg, idUserReserva);
                                     }
 
@@ -169,34 +167,27 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
             aDial.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    System.out.println("No");
                 }
             });
             aDial.create().show();
 
-
-            Toast.makeText(v.getContext(), FirebaseAuth.getInstance().getCurrentUser().getUid(), Toast.LENGTH_LONG).show();
         }
 
         public void eliminarImagenStorage(String image) {
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
 
-            //StorageReference imagesRef = storageRef.child("images")
-
-            // Create a reference to the file to delete
+            // Crear una referencia al archivo a eliminar
             StorageReference desertRef = storageRef.child(image);
 
-            // Delete the file
+            // borrar archivo
             desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    // File deleted successfully
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    // Uh-oh, an error occurred!
                 }
             });
         }
@@ -205,8 +196,6 @@ public class MyBikesRecyclerViewAdapter extends RecyclerView.Adapter<MyBikesRecy
 
             String myId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            //String adminId="KpAlrOkLa0Oa4wlJEKPClSzxk2u2";
-            //String idUserBike=mItem.getIdUser();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
             String timestamp = String.valueOf(System.currentTimeMillis());
             HashMap<String, Object> hashMap = new HashMap<>();

@@ -137,7 +137,7 @@ public class RegistrarBiciFragment extends Fragment {
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
+                        // Se obtiene la ultima ubicación conocida. Puede ser nulo
 
                         if (location != null) {
                             latitude = location.getLatitude();
@@ -148,9 +148,8 @@ public class RegistrarBiciFragment extends Fragment {
                             List<Address> addresses;
 
                             try {
-                                addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                                addresses = geocoder.getFromLocation(latitude, longitude, 1);
 
-                                //String addresse = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                                 city = addresses.get(0).getLocality();
                                 country = addresses.get(0).getCountryName();
                                 street = addresses.get(0).getThoroughfare()+ " "+addresses.get(0).getSubThoroughfare();
@@ -214,9 +213,6 @@ public class RegistrarBiciFragment extends Fragment {
                                     Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //Uri selectedImageUri = null;
-
-        //String filePath = null;
         switch (requestCode) {
             case SELECT_FILE:
                 if (resultCode == Activity.RESULT_OK) {
@@ -276,14 +272,11 @@ public class RegistrarBiciFragment extends Fragment {
                 tvCargaFoto.setVisibility(View.VISIBLE);
 
                 progressBar.setProgress((int) ((snapshot.getBytesTransferred()/snapshot.getTotalByteCount())*100));
-
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                 tvCargaFoto.setText(R.string.tvCargaCompletaFotoBici);
-
                 image=taskSnapshot.getMetadata().getReference().toString();//Ubicación en Storage
 
                 registrar();

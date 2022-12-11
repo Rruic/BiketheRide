@@ -39,15 +39,11 @@ public class RegistrarUser extends AppCompatActivity {
                 String passUser = binding.etPassword.getText().toString().trim();
                 String nombreUser = binding.etNombre.getText().toString().trim();
 
-                System.out.println("asd"+emailUser+" "+passUser+" "+nombreUser);
-
-                System.out.println(emailUser.isEmpty()+" "+passUser.isEmpty()+" ");
                 if (emailUser.isEmpty() || passUser.isEmpty() || nombreUser.isEmpty()) {
                     Toast.makeText(RegistrarUser.this, "Complete los datos", Toast.LENGTH_SHORT).show();
                 } else {
                     registrarUser(nombreUser, emailUser, passUser);
                 }
-
             }
         });
     }
@@ -57,18 +53,12 @@ public class RegistrarUser extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                /*String id = mAuth.getCurrentUser().getUid();
-                Map<String, Object> map = new HashMap<>();
-                map.put("id", id);
-                map.put("name", nombreUser);
-                map.put("email", emailUser);
-                map.put("password", passUser);*/
+
                     ModeloUser user=new ModeloUser(nombreUser,mAuth.getCurrentUser().getEmail(),mAuth.getCurrentUser().getUid(),"");
                     user.addToDatabase(mAuth.getCurrentUser().getUid());
                     Toast.makeText(RegistrarUser.this, "Usuario registrado correctamente", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    //Toast.makeText(Registrar.this,"Error de registro",Toast.LENGTH_LONG).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegistrarUser.this);
 
                     builder.setTitle("Error de registro");

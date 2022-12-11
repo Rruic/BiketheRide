@@ -15,11 +15,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import com.example.biketheride.chat.ChatListFragment;
-import com.example.biketheride.mybikes.MisBicisFragment;
-import com.example.biketheride.reserva.ReservasFragment;
 import com.example.biketheride.bike.BicisDisponiblesFragment;
 import com.example.biketheride.bike.Bike;
+import com.example.biketheride.chat.ChatListFragment;
+import com.example.biketheride.databinding.ActivityMainBinding;
+import com.example.biketheride.mybikes.MisBicisFragment;
+import com.example.biketheride.reserva.ReservasFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
 
     private FirebaseAuth mauth;
     private DatabaseReference mDatabase;
-    String title;
     private static String fecha;
 
     public static String getFecha() {
@@ -43,27 +43,27 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
         MainActivity.fecha = fecha;
     }
 
-
     private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view= binding.getRoot();
+        View view = binding.getRoot();
         setContentView(view);
 
-        mauth=FirebaseAuth.getInstance();
+        mauth = FirebaseAuth.getInstance();
 
 
         mDatabase = FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
 
-        Bundle bundle=getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
         mDatabase.child("user").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Establece el nombre de usuario en la cabecera en tiempo real
-                TextView tvPerfil= (TextView) binding.navView.getHeaderView(0).findViewById(R.id.tvPerfil);
+                TextView tvPerfil = (TextView) binding.navView.getHeaderView(0).findViewById(R.id.tvPerfil);
                 tvPerfil.setText(snapshot.child(mauth.getCurrentUser().getUid()).child("name").getValue().toString());
 
             }
@@ -92,11 +92,11 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
                         fragmentTransaction = true;
                         break;
                     case R.id.mapa:
-                        if (getFecha()==null){
+                        if (getFecha() == null) {
                             Toast.makeText(MainActivity.this, "Para ver el mapa debes seleccionar una fecha", Toast.LENGTH_SHORT).show();
-                        }else{
-                        fragment = new MapsFragment();
-                        fragmentTransaction = true;
+                        } else {
+                            fragment = new MapsFragment();
+                            fragmentTransaction = true;
                         }
                         break;
                     case R.id.reservas:
@@ -116,24 +116,24 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
                         fragmentTransaction = true;
                         break;
                     case R.id.logout:
-                        SharedPreferences prefs=getSharedPreferences(getString(R.string.prefs_file),Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor=prefs.edit();
+                        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        fecha=null;
                         editor.clear();
                         editor.apply();
                         FirebaseAuth.getInstance().signOut();
-
                         finish();
                         break;
                 }
 
 
-               // System.out.println("Fragm "+(getSupportFragmentManager().findFragmentById(R.id.content_frame).getTag()==fragment.getTag()));
+                // System.out.println("Fragm "+(getSupportFragmentManager().findFragmentById(R.id.content_frame).getTag()==fragment.getTag()));
                 if (fragmentTransaction) {
 
                     //if (fragment==getSupportFragmentManager().findFragmentById(R.id.content_frame)){}
 
-                    String tag=item.getTitle().toString();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment,tag).addToBackStack(null).commit();
+                    String tag = item.getTitle().toString();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment, tag).addToBackStack(null).commit();
                     //item.setChecked(true);
                     getSupportActionBar().setTitle(item.getTitle());
                     binding.drawerLayout.closeDrawers();
@@ -144,9 +144,9 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
         });
 
 
-        SharedPreferences prefs=getSharedPreferences(getString(R.string.prefs_file),Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=prefs.edit();
-        editor.putString("email",bundle.getString("email"));
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("email", bundle.getString("email"));
         editor.apply();
 
 
@@ -156,14 +156,13 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
     private void setDefaultFragment() {
         MenuItem item = binding.navView.getMenu().getItem(0);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new BicisDisponiblesFragment(),item.getTitle().toString()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new BicisDisponiblesFragment(), item.getTitle().toString()).commit();
 
-        //item.setChecked(true);
         getSupportActionBar().setTitle(item.getTitle());
     }
 
-    private void setToolbar(){
-        Toolbar toolbar=findViewById(R.id.toolbar);
+    private void setToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
@@ -194,23 +193,15 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
 
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_OPEN);
         getSupportActionBar().hide();
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new EditPerfilFragment()).addToBackStack(null).commit();
         getSupportActionBar().setTitle("Editar perfil");
         binding.drawerLayout.closeDrawers();
     }
-    public void showDrawer(){
+
+    public void showDrawer() {
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         getSupportActionBar().show();
 
-    }
-
-    public FirebaseAuth getMauth() {
-        return mauth;
-    }
-
-    public DatabaseReference getmDatabase() {
-        return mDatabase;
     }
 
     @Override
@@ -219,9 +210,7 @@ public class MainActivity extends AppCompatActivity implements BicisDisponiblesF
 
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.content_frame);
 
-
         getSupportActionBar().setTitle(f.getTag());
-
 
     }
 }

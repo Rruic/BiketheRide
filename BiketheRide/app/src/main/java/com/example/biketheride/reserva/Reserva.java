@@ -77,25 +77,6 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    /*public void addToDatabase(String id){
-        DatabaseReference database= FirebaseDatabase.getInstance("https://biketheride-d83a4-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
-        String key= database.child("reservas").push().getKey();
-        Map<String, Object> childUpdates = new HashMap<>();
-        database.child("reservas/"+id).setValue(this).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                System.out.println("En reserva OK");
-            }
-        });
-    }*/
-    private static Reserva mInstance;
-
-
-    public static Reserva getInstance() {
-        if (mInstance == null)
-            mInstance = new Reserva();
-        return mInstance;
-    }
 
 }
 

@@ -122,19 +122,8 @@ public class ChatListFragment extends Fragment {
                     if (sender == null || receiver == null) {
                         continue;
                     }
-                    // checking for the type of message if
-                    // message type is image then set
-                    // last message as sent a photo
-                   /* if (chat.getReceiver().equals(firebaseUser.getUid()) &&
-                            chat.getSender().equals(uid) ||
-                            chat.getReceiver().equals(uid) &&
-                                    chat.getSender().equals(firebaseUser.getUid())) {
-                        if (chat.getType().equals("images")) {
-                            ultMsg = "Sent a Photo";
-                        } else {*/
+
                     ultMsg = chat.getMessage();
-                    //  }
-                    // }
                 }
                 adapterChatList.setultimoMsgMap(uid, ultMsg);
                 adapterChatList.notifyDataSetChanged();

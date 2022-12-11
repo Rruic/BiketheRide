@@ -146,41 +146,6 @@ public class ReservasFragment extends Fragment {
             }
         });
     }
-/*
-    private void downloadPhoto(Bike c) {
-
-        mStorageReference = FirebaseStorage.getInstance().getReferenceFromUrl(c.getImage());
-        System.out.println("Imagen download: " + mStorageReference);
-
-        try {
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            final File localFile = File.createTempFile("PNG_" + timeStamp, ".png");
-            mStorageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    //Insert the downloaded image in its right position at the ArrayList
-
-                    String url = "gs://" + taskSnapshot.getStorage().getBucket() + "/" + taskSnapshot.getStorage().getName();
-                    ;
-                    Log.d(TAG, "Loaded " + url);
-                    for (Bike c : misBicis) {
-                        if (c.getImage().equals(url)) {
-                            c.setImageBitmap(BitmapFactory.decodeFile(localFile.getAbsolutePath()));
-                            mAdapter.notifyDataSetChanged();
-                            Log.d(TAG, "Loaded pic " + c.getImage() + ";" + url + localFile.getAbsolutePath());
-                        }
-                    }
-                }
-
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
-
-
 
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
